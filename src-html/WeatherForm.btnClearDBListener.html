@@ -1,0 +1,651 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>import java.awt.*;<a name="line.1"></a>
+<span class="sourceLineNo">002</span>import java.awt.event.* ;<a name="line.2"></a>
+<span class="sourceLineNo">003</span>import javax.swing.*;<a name="line.3"></a>
+<span class="sourceLineNo">004</span>import java.util.StringTokenizer ;<a name="line.4"></a>
+<span class="sourceLineNo">005</span>import java.io.*;<a name="line.5"></a>
+<span class="sourceLineNo">006</span>import java.util.Scanner;<a name="line.6"></a>
+<span class="sourceLineNo">007</span>import java.util.ArrayList ;<a name="line.7"></a>
+<span class="sourceLineNo">008</span><a name="line.8"></a>
+<span class="sourceLineNo">009</span>/**<a name="line.9"></a>
+<span class="sourceLineNo">010</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.10"></a>
+<span class="sourceLineNo">011</span>@version 1.01 12/16/2013<a name="line.11"></a>
+<span class="sourceLineNo">012</span>@assignment.number Final Project - A190-15<a name="line.12"></a>
+<span class="sourceLineNo">013</span>@prgm.usage Called from the operating system<a name="line.13"></a>
+<span class="sourceLineNo">014</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.14"></a>
+<span class="sourceLineNo">015</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.15"></a>
+<span class="sourceLineNo">016</span>*/ <a name="line.16"></a>
+<span class="sourceLineNo">017</span>public class WeatherForm extends JFrame<a name="line.17"></a>
+<span class="sourceLineNo">018</span>{<a name="line.18"></a>
+<span class="sourceLineNo">019</span>   // Class level variables<a name="line.19"></a>
+<span class="sourceLineNo">020</span>   JPanel panel ;                       //a panel that goes ont the window<a name="line.20"></a>
+<span class="sourceLineNo">021</span>   JComboBox lstWeather ;                //the combobox that will display the weather report on the form<a name="line.21"></a>
+<span class="sourceLineNo">022</span>   JButton btnClearDB ;             //button from spec<a name="line.22"></a>
+<span class="sourceLineNo">023</span>   JButton btnDownloadFB ;          //button from spec<a name="line.23"></a>
+<span class="sourceLineNo">024</span>   JButton btnUpdateDBFB;           //button from spec      <a name="line.24"></a>
+<span class="sourceLineNo">025</span>   JButton btnUpdateDBNames ;       //button from spec<a name="line.25"></a>
+<span class="sourceLineNo">026</span>   JButton btnLoadCombo ;           //button from spec<a name="line.26"></a>
+<span class="sourceLineNo">027</span>   JComboBox cboLocations ;           //the combobox that will hold the locatoins of the airports<a name="line.27"></a>
+<span class="sourceLineNo">028</span>   JLabel picWeather ;              //the label that will hold the weather pic<a name="line.28"></a>
+<span class="sourceLineNo">029</span>   JLabel lblDateTime ;             //the label for date and time<a name="line.29"></a>
+<span class="sourceLineNo">030</span>   JLabel lblDate ;                    //the label that will be changed as time and date change<a name="line.30"></a>
+<span class="sourceLineNo">031</span>   JLabel lblLocation ;             //the location label<a name="line.31"></a>
+<span class="sourceLineNo">032</span>   JLabel lblStatus ;                                   //create a status label to let the user know how the program is doing on the form<a name="line.32"></a>
+<span class="sourceLineNo">033</span>   final int WINDOW_WIDTH = 500 ;   //the width of the window<a name="line.33"></a>
+<span class="sourceLineNo">034</span>   final int WINDOW_HEIGHT = 550 ;  //the height of the window<a name="line.34"></a>
+<span class="sourceLineNo">035</span>   <a name="line.35"></a>
+<span class="sourceLineNo">036</span>   /**<a name="line.36"></a>
+<span class="sourceLineNo">037</span>   This function is the constructor. It creates the form and places all labels and buttons<a name="line.37"></a>
+<span class="sourceLineNo">038</span>        on a panel and adds it to the frame. Then it sets everything to visible. <a name="line.38"></a>
+<span class="sourceLineNo">039</span>   <a name="line.39"></a>
+<span class="sourceLineNo">040</span>   @param none<a name="line.40"></a>
+<span class="sourceLineNo">041</span>   @return none<a name="line.41"></a>
+<span class="sourceLineNo">042</span>   */ <a name="line.42"></a>
+<span class="sourceLineNo">043</span>   public WeatherForm()<a name="line.43"></a>
+<span class="sourceLineNo">044</span>   {  //set the window title<a name="line.44"></a>
+<span class="sourceLineNo">045</span>      setTitle("A19015");<a name="line.45"></a>
+<span class="sourceLineNo">046</span>        //set the window size<a name="line.46"></a>
+<span class="sourceLineNo">047</span>      setSize(WINDOW_WIDTH, WINDOW_HEIGHT)  ;<a name="line.47"></a>
+<span class="sourceLineNo">048</span>        //let the X button close the program<a name="line.48"></a>
+<span class="sourceLineNo">049</span>      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<a name="line.49"></a>
+<span class="sourceLineNo">050</span>      <a name="line.50"></a>
+<span class="sourceLineNo">051</span>        // section 20 - set up the panel<a name="line.51"></a>
+<span class="sourceLineNo">052</span>        // Set the JPanel Parameters<a name="line.52"></a>
+<span class="sourceLineNo">053</span>      panel = new JPanel(null) ; //null parameter allows x y axis placement of components<a name="line.53"></a>
+<span class="sourceLineNo">054</span>      panel.setPreferredSize(new Dimension(490,540)) ; //make the panel a little smaller than the frame so that it fits<a name="line.54"></a>
+<span class="sourceLineNo">055</span>      panel.setBackground(Color.lightGray) ;//collor the panel<a name="line.55"></a>
+<span class="sourceLineNo">056</span>      getContentPane().add(panel);          //add the panel to the frame<a name="line.56"></a>
+<span class="sourceLineNo">057</span>      <a name="line.57"></a>
+<span class="sourceLineNo">058</span>      //make the labels for the form. Initialize it to , so that the us<a name="line.58"></a>
+<span class="sourceLineNo">059</span>      lblStatus = setLabel(25, 450, "ready", 350, 20) ;<a name="line.59"></a>
+<span class="sourceLineNo">060</span>      lblLocation = setLabel(25, 25, "Location", 350, 20);<a name="line.60"></a>
+<span class="sourceLineNo">061</span>      lblDateTime = setLabel(250, 25, "Date/Time", 350, 20) ;<a name="line.61"></a>
+<span class="sourceLineNo">062</span>      lblDate = setLabel(375, 25, "lblDate", 350, 20) ;<a name="line.62"></a>
+<span class="sourceLineNo">063</span>      picWeather = setLabel(300, 300, "weatherPic", 200, 200) ;<a name="line.63"></a>
+<span class="sourceLineNo">064</span>      <a name="line.64"></a>
+<span class="sourceLineNo">065</span>      //make the weather report combobox that will be displayed on the form             <a name="line.65"></a>
+<span class="sourceLineNo">066</span>      String[] weather = { "location", "observation" } ;<a name="line.66"></a>
+<span class="sourceLineNo">067</span>      lstWeather = new JComboBox(weather);<a name="line.67"></a>
+<span class="sourceLineNo">068</span>      lstWeather.setSize(400,20);<a name="line.68"></a>
+<span class="sourceLineNo">069</span>      lstWeather.setLocation(25, 100) ;<a name="line.69"></a>
+<span class="sourceLineNo">070</span>      panel.add(lstWeather) ;<a name="line.70"></a>
+<span class="sourceLineNo">071</span>        //make the various buttons on the form and give them each an action listener class      <a name="line.71"></a>
+<span class="sourceLineNo">072</span>      btnClearDB = setButton("Clear the Database", 25, 300 ) ;<a name="line.72"></a>
+<span class="sourceLineNo">073</span>      btnClearDB.addActionListener(new btnClearDBListener()) ;<a name="line.73"></a>
+<span class="sourceLineNo">074</span>      btnDownloadFB = setButton("Download Winds Aloft/Save to Disk", 25, 325) ;<a name="line.74"></a>
+<span class="sourceLineNo">075</span>      btnDownloadFB.addActionListener(new btnDownloadFBListener()) ;<a name="line.75"></a>
+<span class="sourceLineNo">076</span>      btnUpdateDBFB = setButton("Update DB with Winds Aloft Data", 25, 350) ;<a name="line.76"></a>
+<span class="sourceLineNo">077</span>      btnUpdateDBFB.addActionListener(new btnUpdateDBFBListener()) ; <a name="line.77"></a>
+<span class="sourceLineNo">078</span>      btnUpdateDBNames = setButton("Update DB Station Names", 25, 375) ;<a name="line.78"></a>
+<span class="sourceLineNo">079</span>      btnUpdateDBNames.addActionListener(new btnUpdateDBNamesListener()) ;<a name="line.79"></a>
+<span class="sourceLineNo">080</span>      btnLoadCombo = setButton("Clear and Load ComboBox from DB", 25, 400 ) ;<a name="line.80"></a>
+<span class="sourceLineNo">081</span>      btnLoadCombo.addActionListener(new btnLoadComboListener()) ;      <a name="line.81"></a>
+<span class="sourceLineNo">082</span>      //make the locatoins combobox and add an action listener<a name="line.82"></a>
+<span class="sourceLineNo">083</span>      cboLocations = setCombobox("cboLocations", 25, 50) ;<a name="line.83"></a>
+<span class="sourceLineNo">084</span>      cboLocations.addActionListener(new cboLocationsListener()) ;   //link the combobox to an actionlistenter<a name="line.84"></a>
+<span class="sourceLineNo">085</span>      try<a name="line.85"></a>
+<span class="sourceLineNo">086</span>      {  //load the NWS image as a label on the form<a name="line.86"></a>
+<span class="sourceLineNo">087</span>         ImageIcon weatherImage = new ImageIcon("nws image.png") ;<a name="line.87"></a>
+<span class="sourceLineNo">088</span>         picWeather.setText(null) ;<a name="line.88"></a>
+<span class="sourceLineNo">089</span>         picWeather.setIcon(weatherImage) ;<a name="line.89"></a>
+<span class="sourceLineNo">090</span>        //picWeather.setText(null) ;<a name="line.90"></a>
+<span class="sourceLineNo">091</span>      }<a name="line.91"></a>
+<span class="sourceLineNo">092</span>      catch (Exception e)<a name="line.92"></a>
+<span class="sourceLineNo">093</span>      {<a name="line.93"></a>
+<span class="sourceLineNo">094</span>         System.out.println(e.getMessage()) ;<a name="line.94"></a>
+<span class="sourceLineNo">095</span>         System.out.println("Couldn't find nws image") ;<a name="line.95"></a>
+<span class="sourceLineNo">096</span>      }<a name="line.96"></a>
+<span class="sourceLineNo">097</span>        //set the form visible at the end of the constructor to make sure that components have first been added<a name="line.97"></a>
+<span class="sourceLineNo">098</span>      setVisible(true);<a name="line.98"></a>
+<span class="sourceLineNo">099</span>                <a name="line.99"></a>
+<span class="sourceLineNo">100</span>                //set the status on the form to creating table<a name="line.100"></a>
+<span class="sourceLineNo">101</span>      lblStatus.setText("Creating Table"); <a name="line.101"></a>
+<span class="sourceLineNo">102</span>                //create a string to hold SQL commands<a name="line.102"></a>
+<span class="sourceLineNo">103</span>      String strSQL ;<a name="line.103"></a>
+<span class="sourceLineNo">104</span>                //instantiate a database oject<a name="line.104"></a>
+<span class="sourceLineNo">105</span>      DBUpdt db = new DBUpdt() ;<a name="line.105"></a>
+<span class="sourceLineNo">106</span>                //connect to the derby database using the openConnection method<a name="line.106"></a>
+<span class="sourceLineNo">107</span>      db.openConnection("Weather") ;<a name="line.107"></a>
+<span class="sourceLineNo">108</span>                //Setup the SQL statement for the stations table in the WEather database<a name="line.108"></a>
+<span class="sourceLineNo">109</span>      strSQL = "CREATE TABLE stations (stationID varchar(3), stationName varchar(200), ";<a name="line.109"></a>
+<span class="sourceLineNo">110</span>      strSQL = strSQL + "city varchar(20), state varchar(4), latitude varchar(40), ";<a name="line.110"></a>
+<span class="sourceLineNo">111</span>      strSQL = strSQL + "longitude varchar(40), windsaloft varchar(200), ID varchar(20), ";             <a name="line.111"></a>
+<span class="sourceLineNo">112</span>      strSQL = strSQL + "temperature varchar(20), humidity varchar(20), windspeed varchar(20), ";<a name="line.112"></a>
+<span class="sourceLineNo">113</span>      strSQL = strSQL + "winddirection varchar(20), elevation varchar(20), pressure varchar(20), ";<a name="line.113"></a>
+<span class="sourceLineNo">114</span>      strSQL = strSQL + "dewpoint varchar(20) ) ";                                      <a name="line.114"></a>
+<span class="sourceLineNo">115</span>                        //display the strSQL command for debugging       <a name="line.115"></a>
+<span class="sourceLineNo">116</span>      System.out.println(strSQL) ;<a name="line.116"></a>
+<span class="sourceLineNo">117</span>                //use the new updateQuery function in the DBUpdt class to make changes to the tables<a name="line.117"></a>
+<span class="sourceLineNo">118</span>      db.updateQuery(strSQL) ;<a name="line.118"></a>
+<span class="sourceLineNo">119</span>                //close the database so others can use it<a name="line.119"></a>
+<span class="sourceLineNo">120</span>      db.close() ;<a name="line.120"></a>
+<span class="sourceLineNo">121</span>                        //set the staus on the form to table created<a name="line.121"></a>
+<span class="sourceLineNo">122</span>      status("Table Created"); <a name="line.122"></a>
+<span class="sourceLineNo">123</span>   }<a name="line.123"></a>
+<span class="sourceLineNo">124</span>  <a name="line.124"></a>
+<span class="sourceLineNo">125</span>  /**<a name="line.125"></a>
+<span class="sourceLineNo">126</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.126"></a>
+<span class="sourceLineNo">127</span>@version 1.01 12/16/2013<a name="line.127"></a>
+<span class="sourceLineNo">128</span>@assignment.number Final Project - A190-15<a name="line.128"></a>
+<span class="sourceLineNo">129</span>@prgm.usage Called from the operating system<a name="line.129"></a>
+<span class="sourceLineNo">130</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.130"></a>
+<span class="sourceLineNo">131</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.131"></a>
+<span class="sourceLineNo">132</span>*/ <a name="line.132"></a>
+<span class="sourceLineNo">133</span>       <a name="line.133"></a>
+<span class="sourceLineNo">134</span>   private class btnClearDBListener implements ActionListener<a name="line.134"></a>
+<span class="sourceLineNo">135</span>   {<a name="line.135"></a>
+<span class="sourceLineNo">136</span>      /**<a name="line.136"></a>
+<span class="sourceLineNo">137</span>      This function is the required function for an action listener. When the clear database button is<a name="line.137"></a>
+<span class="sourceLineNo">138</span>      pressed, the function clears the Weather database using a DBUpdt object.<a name="line.138"></a>
+<span class="sourceLineNo">139</span>      <a name="line.139"></a>
+<span class="sourceLineNo">140</span>      @param event an ActionPerformed type that happenes everytime the actionlistener is notified<a name="line.140"></a>
+<span class="sourceLineNo">141</span>      */ <a name="line.141"></a>
+<span class="sourceLineNo">142</span>      public void actionPerformed(ActionEvent event)<a name="line.142"></a>
+<span class="sourceLineNo">143</span>      {<a name="line.143"></a>
+<span class="sourceLineNo">144</span>         status("Clearing the Database");<a name="line.144"></a>
+<span class="sourceLineNo">145</span>         cboLocations.removeAllItems() ;<a name="line.145"></a>
+<span class="sourceLineNo">146</span>         DBUpdt db = new DBUpdt();                    //create a new DBUpdt object<a name="line.146"></a>
+<span class="sourceLineNo">147</span>         db.openConnection("Weather") ;                 //open the connectio with the Derby database<a name="line.147"></a>
+<span class="sourceLineNo">148</span>         db.deleteAll("stations");                      //wipe all records from the grades table<a name="line.148"></a>
+<span class="sourceLineNo">149</span>         db.close() ;<a name="line.149"></a>
+<span class="sourceLineNo">150</span>         status("Database Has Been Cleared") ;<a name="line.150"></a>
+<span class="sourceLineNo">151</span>      }<a name="line.151"></a>
+<span class="sourceLineNo">152</span>   }<a name="line.152"></a>
+<span class="sourceLineNo">153</span> /**<a name="line.153"></a>
+<span class="sourceLineNo">154</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.154"></a>
+<span class="sourceLineNo">155</span>@version 1.01 12/16/2013<a name="line.155"></a>
+<span class="sourceLineNo">156</span>@assignment.number Final Project - A190-15<a name="line.156"></a>
+<span class="sourceLineNo">157</span>@prgm.usage Called from the operating system<a name="line.157"></a>
+<span class="sourceLineNo">158</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.158"></a>
+<span class="sourceLineNo">159</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.159"></a>
+<span class="sourceLineNo">160</span>*/   <a name="line.160"></a>
+<span class="sourceLineNo">161</span>   <a name="line.161"></a>
+<span class="sourceLineNo">162</span>   private class btnDownloadFBListener implements ActionListener<a name="line.162"></a>
+<span class="sourceLineNo">163</span>   {<a name="line.163"></a>
+<span class="sourceLineNo">164</span>      /**<a name="line.164"></a>
+<span class="sourceLineNo">165</span>      This function is the required function for an action listener. When the download weather button is<a name="line.165"></a>
+<span class="sourceLineNo">166</span>      presse, the function goes online using an INET object to downoad raw strings of data from the <a name="line.166"></a>
+<span class="sourceLineNo">167</span>      specified URL, and then saves the data to file.<a name="line.167"></a>
+<span class="sourceLineNo">168</span>      <a name="line.168"></a>
+<span class="sourceLineNo">169</span>      @param event an ActionPerformed type that happenes everytime the actionlistener is notified<a name="line.169"></a>
+<span class="sourceLineNo">170</span>      */ <a name="line.170"></a>
+<span class="sourceLineNo">171</span>      public void actionPerformed(ActionEvent event)<a name="line.171"></a>
+<span class="sourceLineNo">172</span>      {<a name="line.172"></a>
+<span class="sourceLineNo">173</span>         String rawPageText ;<a name="line.173"></a>
+<span class="sourceLineNo">174</span>         String windsAloftText ;<a name="line.174"></a>
+<span class="sourceLineNo">175</span>         String lblDateText ;<a name="line.175"></a>
+<span class="sourceLineNo">176</span>         status("Downoading Winds Aloft Data") ;<a name="line.176"></a>
+<span class="sourceLineNo">177</span>         Inet net = new Inet() ;<a name="line.177"></a>
+<span class="sourceLineNo">178</span>         rawPageText = net.getURLRaw("http://aviationweather.gov/products/nws/winds/?area=all&amp;fint=06&amp;lvl=lo") ;<a name="line.178"></a>
+<span class="sourceLineNo">179</span>         windsAloftText = net.getPREData(rawPageText);<a name="line.179"></a>
+<span class="sourceLineNo">180</span>         lblDateText = windsAloftText.substring(windsAloftText.indexOf("VALID"),windsAloftText.indexOf("FOR USE")) ;<a name="line.180"></a>
+<span class="sourceLineNo">181</span>         lblDate.setText(lblDateText) ;<a name="line.181"></a>
+<span class="sourceLineNo">182</span>         net.saveToFile("FBIN.txt",windsAloftText) ;<a name="line.182"></a>
+<span class="sourceLineNo">183</span>         status("Winds Aloft Data saved to file") ;<a name="line.183"></a>
+<span class="sourceLineNo">184</span>      }      <a name="line.184"></a>
+<span class="sourceLineNo">185</span>   }<a name="line.185"></a>
+<span class="sourceLineNo">186</span>/**<a name="line.186"></a>
+<span class="sourceLineNo">187</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.187"></a>
+<span class="sourceLineNo">188</span>@version 1.01 12/16/2013<a name="line.188"></a>
+<span class="sourceLineNo">189</span>@assignment.number Final Project - A190-15<a name="line.189"></a>
+<span class="sourceLineNo">190</span>@prgm.usage Called from the operating system<a name="line.190"></a>
+<span class="sourceLineNo">191</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.191"></a>
+<span class="sourceLineNo">192</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.192"></a>
+<span class="sourceLineNo">193</span>*/ <a name="line.193"></a>
+<span class="sourceLineNo">194</span>   private class btnUpdateDBFBListener implements ActionListener<a name="line.194"></a>
+<span class="sourceLineNo">195</span>   {<a name="line.195"></a>
+<span class="sourceLineNo">196</span>      /**<a name="line.196"></a>
+<span class="sourceLineNo">197</span>      This function is the required function for an action listener. When the update database<a name="line.197"></a>
+<span class="sourceLineNo">198</span>      button is pressed, the saved file is read and the weather is put into the windsaloft field in<a name="line.198"></a>
+<span class="sourceLineNo">199</span>      the stations table of the weather database using DBUpdt objects.<a name="line.199"></a>
+<span class="sourceLineNo">200</span>      <a name="line.200"></a>
+<span class="sourceLineNo">201</span>      @param event an ActionPerformed type that happenes everytime the actionlistener is notified<a name="line.201"></a>
+<span class="sourceLineNo">202</span>      */ <a name="line.202"></a>
+<span class="sourceLineNo">203</span>      public void actionPerformed(ActionEvent event)      <a name="line.203"></a>
+<span class="sourceLineNo">204</span>      {<a name="line.204"></a>
+<span class="sourceLineNo">205</span>         try<a name="line.205"></a>
+<span class="sourceLineNo">206</span>         {<a name="line.206"></a>
+<span class="sourceLineNo">207</span>            DBUpdt db = new DBUpdt() ;<a name="line.207"></a>
+<span class="sourceLineNo">208</span>            db.openConnection("Weather") ;<a name="line.208"></a>
+<span class="sourceLineNo">209</span>            String strInputFile = "FBIN.txt" ;                        //create a string to hold the grade text file's name<a name="line.209"></a>
+<span class="sourceLineNo">210</span>            File myFile = new File(strInputFile);        //create a new file object  from the grades text<a name="line.210"></a>
+<span class="sourceLineNo">211</span>            Scanner inputFile = new Scanner(myFile);     //create a scanner object to read the created file<a name="line.211"></a>
+<span class="sourceLineNo">212</span>            String strRecord= "" ;                            //create a temportary string to hold lines of text<a name="line.212"></a>
+<span class="sourceLineNo">213</span>            //String[] aryFields = new String[3];                               //create an array hold the week, quiz, and asgn number strings<a name="line.213"></a>
+<span class="sourceLineNo">214</span>            if (myFile.exists())                         //if the file exists, begin reading it<a name="line.214"></a>
+<span class="sourceLineNo">215</span>            { <a name="line.215"></a>
+<span class="sourceLineNo">216</span>               for (int i = 0 ; i&lt;8 ; i++)<a name="line.216"></a>
+<span class="sourceLineNo">217</span>               {<a name="line.217"></a>
+<span class="sourceLineNo">218</span>                  strRecord = inputFile.nextLine();         //read the first 8 line of the fbin.txt file<a name="line.218"></a>
+<span class="sourceLineNo">219</span>               }<a name="line.219"></a>
+<span class="sourceLineNo">220</span>               while (inputFile.hasNext() &amp;&amp; strRecord.substring(0,6).compareTo("&lt;/pre&gt;")!=0 )               //read the rest of the file until it's finished<a name="line.220"></a>
+<span class="sourceLineNo">221</span>               {<a name="line.221"></a>
+<span class="sourceLineNo">222</span>                  strRecord = inputFile.nextLine();      //read one line of the file at a time<a name="line.222"></a>
+<span class="sourceLineNo">223</span>                  System.out.println(strRecord);         //display the line just read to the user<a name="line.223"></a>
+<span class="sourceLineNo">224</span>                        <a name="line.224"></a>
+<span class="sourceLineNo">225</span>                  //add the weather to the windsaloft field in the db and display to the user  <a name="line.225"></a>
+<span class="sourceLineNo">226</span>                  db.addRecord("stations", "stationID", strRecord.substring(0,3));<a name="line.226"></a>
+<span class="sourceLineNo">227</span>                  db.setField("stations", "stationID", strRecord.substring(0,3), "windsaloft", strRecord);<a name="line.227"></a>
+<span class="sourceLineNo">228</span>               }<a name="line.228"></a>
+<span class="sourceLineNo">229</span>                //close the file<a name="line.229"></a>
+<span class="sourceLineNo">230</span>               inputFile.close();<a name="line.230"></a>
+<span class="sourceLineNo">231</span>            }<a name="line.231"></a>
+<span class="sourceLineNo">232</span>                //close the database so others can use it<a name="line.232"></a>
+<span class="sourceLineNo">233</span>            db.close();<a name="line.233"></a>
+<span class="sourceLineNo">234</span>                        //tell the user that the database was loaded<a name="line.234"></a>
+<span class="sourceLineNo">235</span>            status("Database Updated - Winds Aloft") ;<a name="line.235"></a>
+<span class="sourceLineNo">236</span>         }<a name="line.236"></a>
+<span class="sourceLineNo">237</span>         catch(Exception e)<a name="line.237"></a>
+<span class="sourceLineNo">238</span>         {<a name="line.238"></a>
+<span class="sourceLineNo">239</span>            status(e.getMessage()) ;<a name="line.239"></a>
+<span class="sourceLineNo">240</span>         }<a name="line.240"></a>
+<span class="sourceLineNo">241</span>      }<a name="line.241"></a>
+<span class="sourceLineNo">242</span>   }<a name="line.242"></a>
+<span class="sourceLineNo">243</span>/**<a name="line.243"></a>
+<span class="sourceLineNo">244</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.244"></a>
+<span class="sourceLineNo">245</span>@version 1.01 12/16/2013<a name="line.245"></a>
+<span class="sourceLineNo">246</span>@assignment.number Final Project - A190-15<a name="line.246"></a>
+<span class="sourceLineNo">247</span>@prgm.usage Called from the operating system<a name="line.247"></a>
+<span class="sourceLineNo">248</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.248"></a>
+<span class="sourceLineNo">249</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.249"></a>
+<span class="sourceLineNo">250</span>*/ <a name="line.250"></a>
+<span class="sourceLineNo">251</span>  <a name="line.251"></a>
+<span class="sourceLineNo">252</span>   private class btnUpdateDBNamesListener implements ActionListener<a name="line.252"></a>
+<span class="sourceLineNo">253</span>   {<a name="line.253"></a>
+<span class="sourceLineNo">254</span>      /**<a name="line.254"></a>
+<span class="sourceLineNo">255</span>      This function is the required function for an action listener. When the update database names<a name="line.255"></a>
+<span class="sourceLineNo">256</span>      button is pressed, the function goes online with the XML read object and extracts xml fields <a name="line.256"></a>
+<span class="sourceLineNo">257</span>      from each station ID to aquire names of airports and put them in the database.<a name="line.257"></a>
+<span class="sourceLineNo">258</span>      <a name="line.258"></a>
+<span class="sourceLineNo">259</span>      @param event an ActionPerformed type that happenes everytime the actionlistener is notified<a name="line.259"></a>
+<span class="sourceLineNo">260</span>      */ <a name="line.260"></a>
+<span class="sourceLineNo">261</span>      public void actionPerformed(ActionEvent event)<a name="line.261"></a>
+<span class="sourceLineNo">262</span>      {<a name="line.262"></a>
+<span class="sourceLineNo">263</span>         String latitude = "" ;<a name="line.263"></a>
+<span class="sourceLineNo">264</span>         String longitude = "" ;<a name="line.264"></a>
+<span class="sourceLineNo">265</span>         String stationID= "";<a name="line.265"></a>
+<span class="sourceLineNo">266</span>         String addressXML = "" ;<a name="line.266"></a>
+<span class="sourceLineNo">267</span>         String stationName ="" ;<a name="line.267"></a>
+<span class="sourceLineNo">268</span>         String strSQL = "SELECT * FROM stations" ; <a name="line.268"></a>
+<span class="sourceLineNo">269</span>         DBUpdt db = new DBUpdt() ;<a name="line.269"></a>
+<span class="sourceLineNo">270</span>         db.openConnection("Weather") ;<a name="line.270"></a>
+<span class="sourceLineNo">271</span>         db.query(strSQL) ;<a name="line.271"></a>
+<span class="sourceLineNo">272</span>         while (db.moreRecords())<a name="line.272"></a>
+<span class="sourceLineNo">273</span>         {<a name="line.273"></a>
+<span class="sourceLineNo">274</span>            stationID = db.getField("stationID");<a name="line.274"></a>
+<span class="sourceLineNo">275</span>            addressXML = "http://w1.weather.gov/xml/current_obs/K"+stationID+".xml" ;<a name="line.275"></a>
+<span class="sourceLineNo">276</span>            try<a name="line.276"></a>
+<span class="sourceLineNo">277</span>            {<a name="line.277"></a>
+<span class="sourceLineNo">278</span>               //create an XMLRead object to read the NWS surface weather<a name="line.278"></a>
+<span class="sourceLineNo">279</span>               XMLRead myXMLReader = new XMLRead() ;<a name="line.279"></a>
+<span class="sourceLineNo">280</span>               myXMLReader.loadPage(addressXML);<a name="line.280"></a>
+<span class="sourceLineNo">281</span>               myXMLReader.setTable("current_observation");<a name="line.281"></a>
+<span class="sourceLineNo">282</span>               stationName = myXMLReader.getField("location") ;  <a name="line.282"></a>
+<span class="sourceLineNo">283</span>               //Get the latitude, longitude, surface temp, relative humidity, from the XML object<a name="line.283"></a>
+<span class="sourceLineNo">284</span>               latitude = myXMLReader.getField("latitude"); <a name="line.284"></a>
+<span class="sourceLineNo">285</span>               //if latitude is negative, it is in the South<a name="line.285"></a>
+<span class="sourceLineNo">286</span>               if (latitude.substring(0,1).compareTo("-")==0)<a name="line.286"></a>
+<span class="sourceLineNo">287</span>               {<a name="line.287"></a>
+<span class="sourceLineNo">288</span>                  latitude=latitude.substring(1)+ " S" ;<a name="line.288"></a>
+<span class="sourceLineNo">289</span>               }<a name="line.289"></a>
+<span class="sourceLineNo">290</span>               //if latitude is positive, it is in the North<a name="line.290"></a>
+<span class="sourceLineNo">291</span>               else<a name="line.291"></a>
+<span class="sourceLineNo">292</span>               {<a name="line.292"></a>
+<span class="sourceLineNo">293</span>                  latitude=latitude + " N" ;<a name="line.293"></a>
+<span class="sourceLineNo">294</span>               }<a name="line.294"></a>
+<span class="sourceLineNo">295</span>               longitude = myXMLReader.getField("longitude");<a name="line.295"></a>
+<span class="sourceLineNo">296</span>            //if longitude is negative, it is in the West,<a name="line.296"></a>
+<span class="sourceLineNo">297</span>               if(longitude.substring(0,1).compareTo("-")==0)<a name="line.297"></a>
+<span class="sourceLineNo">298</span>               {<a name="line.298"></a>
+<span class="sourceLineNo">299</span>                  longitude=longitude.substring(1)+ " W" ;<a name="line.299"></a>
+<span class="sourceLineNo">300</span>               }<a name="line.300"></a>
+<span class="sourceLineNo">301</span>               //if longitude is positive, it is in the East,<a name="line.301"></a>
+<span class="sourceLineNo">302</span>               else<a name="line.302"></a>
+<span class="sourceLineNo">303</span>               {<a name="line.303"></a>
+<span class="sourceLineNo">304</span>                  longitude=longitude + " E" ;<a name="line.304"></a>
+<span class="sourceLineNo">305</span>               }<a name="line.305"></a>
+<span class="sourceLineNo">306</span>               DBUpdt dbUpdate = new DBUpdt();<a name="line.306"></a>
+<span class="sourceLineNo">307</span>               dbUpdate.openConnection("Weather") ;<a name="line.307"></a>
+<span class="sourceLineNo">308</span>               dbUpdate.setField("stations", "stationID", stationID, "stationName", (String)stationName) ;<a name="line.308"></a>
+<span class="sourceLineNo">309</span>               dbUpdate.setField("stations", "stationID", stationID, "latitude", latitude) ;<a name="line.309"></a>
+<span class="sourceLineNo">310</span>               dbUpdate.setField("stations", "stationID", stationID, "longitude", longitude) ;<a name="line.310"></a>
+<span class="sourceLineNo">311</span>               /*<a name="line.311"></a>
+<span class="sourceLineNo">312</span>               strSQL = "UPDATE stations SET stationName = '"+stationName+ "' WHERE stationID = '"+stationID+"'" ;<a name="line.312"></a>
+<span class="sourceLineNo">313</span>               System.out.println(strSQL) ; <a name="line.313"></a>
+<span class="sourceLineNo">314</span>               dbUpdate.updateQuery(strSQL) ;<a name="line.314"></a>
+<span class="sourceLineNo">315</span>               strSQL = "UPDATE stations SET latitude = '"+latitude+ "' WHERE stationID = '"+stationID+"'" ; <a name="line.315"></a>
+<span class="sourceLineNo">316</span>               System.out.println(strSQL) ;<a name="line.316"></a>
+<span class="sourceLineNo">317</span>               dbUpdate.updateQuery(strSQL) ;<a name="line.317"></a>
+<span class="sourceLineNo">318</span>               strSQL = "UPDATE stations SET longitude = '"+longitude+ "' WHERE stationID = '"+stationID+"'" ; <a name="line.318"></a>
+<span class="sourceLineNo">319</span>               System.out.println(strSQL) ; <a name="line.319"></a>
+<span class="sourceLineNo">320</span>               dbUpdate.updateQuery(strSQL) ;<a name="line.320"></a>
+<span class="sourceLineNo">321</span>               */<a name="line.321"></a>
+<span class="sourceLineNo">322</span>               dbUpdate.close() ;<a name="line.322"></a>
+<span class="sourceLineNo">323</span>            }<a name="line.323"></a>
+<span class="sourceLineNo">324</span>            catch(Exception e)<a name="line.324"></a>
+<span class="sourceLineNo">325</span>            {  //if the XML object cant find a station, then tell the database just that<a name="line.325"></a>
+<span class="sourceLineNo">326</span>               status(e.getMessage()) ;<a name="line.326"></a>
+<span class="sourceLineNo">327</span>               DBUpdt dbUpdate = new DBUpdt();<a name="line.327"></a>
+<span class="sourceLineNo">328</span>               dbUpdate.openConnection("Weather") ;<a name="line.328"></a>
+<span class="sourceLineNo">329</span>               strSQL = "UPDATE stations SET stationName = 'not found WHERE stationID' = '"+stationID+"'" ; <a name="line.329"></a>
+<span class="sourceLineNo">330</span>               dbUpdate.updateQuery(strSQL) ;<a name="line.330"></a>
+<span class="sourceLineNo">331</span>               dbUpdate.close();<a name="line.331"></a>
+<span class="sourceLineNo">332</span>            }<a name="line.332"></a>
+<span class="sourceLineNo">333</span>         }<a name="line.333"></a>
+<span class="sourceLineNo">334</span>         db.close();<a name="line.334"></a>
+<span class="sourceLineNo">335</span>         status("DB Station Names Updated");<a name="line.335"></a>
+<span class="sourceLineNo">336</span>      }<a name="line.336"></a>
+<span class="sourceLineNo">337</span>   }<a name="line.337"></a>
+<span class="sourceLineNo">338</span>/**<a name="line.338"></a>
+<span class="sourceLineNo">339</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.339"></a>
+<span class="sourceLineNo">340</span>@version 1.01 12/16/2013<a name="line.340"></a>
+<span class="sourceLineNo">341</span>@assignment.number Final Project - A190-15<a name="line.341"></a>
+<span class="sourceLineNo">342</span>@prgm.usage Called from the operating system<a name="line.342"></a>
+<span class="sourceLineNo">343</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.343"></a>
+<span class="sourceLineNo">344</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.344"></a>
+<span class="sourceLineNo">345</span>*/          <a name="line.345"></a>
+<span class="sourceLineNo">346</span>        <a name="line.346"></a>
+<span class="sourceLineNo">347</span>     <a name="line.347"></a>
+<span class="sourceLineNo">348</span>   private class btnLoadComboListener implements ActionListener<a name="line.348"></a>
+<span class="sourceLineNo">349</span>   {<a name="line.349"></a>
+<span class="sourceLineNo">350</span>      <a name="line.350"></a>
+<span class="sourceLineNo">351</span>      public void actionPerformed(ActionEvent event)<a name="line.351"></a>
+<span class="sourceLineNo">352</span>      {<a name="line.352"></a>
+<span class="sourceLineNo">353</span>         /**<a name="line.353"></a>
+<span class="sourceLineNo">354</span>      This function is the required function for an action listener. When the load combobox button is<a name="line.354"></a>
+<span class="sourceLineNo">355</span>      pressed, the funtion loads the locations combobox with the locations of the airports from the<a name="line.355"></a>
+<span class="sourceLineNo">356</span>      database stationName field and the stationID field.<a name="line.356"></a>
+<span class="sourceLineNo">357</span>      <a name="line.357"></a>
+<span class="sourceLineNo">358</span>      @param event an ActionPerformed type that happenes everytime the actionlistener is notified<a name="line.358"></a>
+<span class="sourceLineNo">359</span>      */ <a name="line.359"></a>
+<span class="sourceLineNo">360</span>         <a name="line.360"></a>
+<span class="sourceLineNo">361</span>         String strSQL = "SELECT * FROM stations" ;<a name="line.361"></a>
+<span class="sourceLineNo">362</span>         cboLocations.removeAllItems() ;<a name="line.362"></a>
+<span class="sourceLineNo">363</span>         DBUpdt db = new DBUpdt() ;<a name="line.363"></a>
+<span class="sourceLineNo">364</span>         db.openConnection("Weather") ;<a name="line.364"></a>
+<span class="sourceLineNo">365</span>         db.query(strSQL) ;<a name="line.365"></a>
+<span class="sourceLineNo">366</span>         while (db.moreRecords())<a name="line.366"></a>
+<span class="sourceLineNo">367</span>         {<a name="line.367"></a>
+<span class="sourceLineNo">368</span>            cboLocations.addItem(db.getField("stationID") + " " + db.getField("stationName")) ;<a name="line.368"></a>
+<span class="sourceLineNo">369</span>         }<a name="line.369"></a>
+<span class="sourceLineNo">370</span>         db.close();<a name="line.370"></a>
+<span class="sourceLineNo">371</span>         status("Combo Box Updated") ;   <a name="line.371"></a>
+<span class="sourceLineNo">372</span>        <a name="line.372"></a>
+<span class="sourceLineNo">373</span>      }<a name="line.373"></a>
+<span class="sourceLineNo">374</span>   }    <a name="line.374"></a>
+<span class="sourceLineNo">375</span>/**<a name="line.375"></a>
+<span class="sourceLineNo">376</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.376"></a>
+<span class="sourceLineNo">377</span>@version 1.01 12/16/2013<a name="line.377"></a>
+<span class="sourceLineNo">378</span>@assignment.number Final Project - A190-15<a name="line.378"></a>
+<span class="sourceLineNo">379</span>@prgm.usage Called from the operating system<a name="line.379"></a>
+<span class="sourceLineNo">380</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.380"></a>
+<span class="sourceLineNo">381</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.381"></a>
+<span class="sourceLineNo">382</span>*/    <a name="line.382"></a>
+<span class="sourceLineNo">383</span>   <a name="line.383"></a>
+<span class="sourceLineNo">384</span>   private class cboLocationsListener implements ActionListener<a name="line.384"></a>
+<span class="sourceLineNo">385</span>   {<a name="line.385"></a>
+<span class="sourceLineNo">386</span>      /**<a name="line.386"></a>
+<span class="sourceLineNo">387</span>      This function is the required function for an action listener. When a combobox location is selected,<a name="line.387"></a>
+<span class="sourceLineNo">388</span>      this function creates a weather report on the form and saves taht weather report to a file called<a name="line.388"></a>
+<span class="sourceLineNo">389</span>      OUTPUT.txt. <a name="line.389"></a>
+<span class="sourceLineNo">390</span>      <a name="line.390"></a>
+<span class="sourceLineNo">391</span>      @param event an ActionPerformed type that happenes everytime the actionlistener is notified<a name="line.391"></a>
+<span class="sourceLineNo">392</span>      */ <a name="line.392"></a>
+<span class="sourceLineNo">393</span>      public void actionPerformed(ActionEvent event)<a name="line.393"></a>
+<span class="sourceLineNo">394</span>      {<a name="line.394"></a>
+<span class="sourceLineNo">395</span>         System.out.println("selection made");<a name="line.395"></a>
+<span class="sourceLineNo">396</span>         int loopCounter = 0 ;<a name="line.396"></a>
+<span class="sourceLineNo">397</span>         lstWeather.removeAllItems() ;<a name="line.397"></a>
+<span class="sourceLineNo">398</span>         <a name="line.398"></a>
+<span class="sourceLineNo">399</span>         if(cboLocations.getItemCount() != 0)<a name="line.399"></a>
+<span class="sourceLineNo">400</span>         {<a name="line.400"></a>
+<span class="sourceLineNo">401</span>            String comboSelection = (String)cboLocations.getSelectedItem() ;<a name="line.401"></a>
+<span class="sourceLineNo">402</span>            String strSQL = "SELECT * FROM stations WHERE stationID = '"+ comboSelection.substring(0,3)+"'" ;<a name="line.402"></a>
+<span class="sourceLineNo">403</span>            try<a name="line.403"></a>
+<span class="sourceLineNo">404</span>            {   <a name="line.404"></a>
+<span class="sourceLineNo">405</span>                //create a PrintWriter Object to write the database to a output.txt File<a name="line.405"></a>
+<span class="sourceLineNo">406</span>               PrintWriter outputFile = new PrintWriter("OUTPUT.txt") ;<a name="line.406"></a>
+<span class="sourceLineNo">407</span>            <a name="line.407"></a>
+<span class="sourceLineNo">408</span>                //create a DBUpdt object to access the database<a name="line.408"></a>
+<span class="sourceLineNo">409</span>               DBUpdt db = new DBUpdt() ;   <a name="line.409"></a>
+<span class="sourceLineNo">410</span>                //open a connection to the stations Weather database with the db object<a name="line.410"></a>
+<span class="sourceLineNo">411</span>               db.openConnection("Weather") ;<a name="line.411"></a>
+<span class="sourceLineNo">412</span>                //print the sql command we will hand the db object to query<a name="line.412"></a>
+<span class="sourceLineNo">413</span>               System.out.println(strSQL) ;<a name="line.413"></a>
+<span class="sourceLineNo">414</span>                 //run a query to get a recordset from the database<a name="line.414"></a>
+<span class="sourceLineNo">415</span>               db.query(strSQL) ;<a name="line.415"></a>
+<span class="sourceLineNo">416</span>                // loop through all the records in the record set from the query<a name="line.416"></a>
+<span class="sourceLineNo">417</span>               while (db.moreRecords())<a name="line.417"></a>
+<span class="sourceLineNo">418</span>               {  <a name="line.418"></a>
+<span class="sourceLineNo">419</span>                  String stationID = db.getField("stationID");<a name="line.419"></a>
+<span class="sourceLineNo">420</span>                  //get the xml url from the station id in the database<a name="line.420"></a>
+<span class="sourceLineNo">421</span>                  String addressXML = "http://w1.weather.gov/xml/current_obs/K"+stationID+".xml" ;<a name="line.421"></a>
+<span class="sourceLineNo">422</span>                  XMLRead myXMLReader = new XMLRead() ;<a name="line.422"></a>
+<span class="sourceLineNo">423</span>                  myXMLReader.loadPage(addressXML);<a name="line.423"></a>
+<span class="sourceLineNo">424</span>                  myXMLReader.setTable("current_observation");<a name="line.424"></a>
+<span class="sourceLineNo">425</span>                  //get the fields from the xml page that need to be displayed in the weather report<a name="line.425"></a>
+<span class="sourceLineNo">426</span>                  String location = myXMLReader.getField("location") ;  <a name="line.426"></a>
+<span class="sourceLineNo">427</span>                  String observation_time = myXMLReader.getField("observation_time");<a name="line.427"></a>
+<span class="sourceLineNo">428</span>                  String latitude = myXMLReader.getField("latitude") ;<a name="line.428"></a>
+<span class="sourceLineNo">429</span>                  String longitude = myXMLReader.getField("longitude") ;<a name="line.429"></a>
+<span class="sourceLineNo">430</span>                  String weather = myXMLReader.getField("weather") ;<a name="line.430"></a>
+<span class="sourceLineNo">431</span>                  String temperature_string = myXMLReader.getField("temperature_string") ;<a name="line.431"></a>
+<span class="sourceLineNo">432</span>                  String relative_humidity = myXMLReader.getField("relative_humidity") ;<a name="line.432"></a>
+<span class="sourceLineNo">433</span>                  String pressure_string = myXMLReader.getField("pressure_string") ;<a name="line.433"></a>
+<span class="sourceLineNo">434</span>                  String dewpoint_string = myXMLReader.getField("dewpoint_string") ;<a name="line.434"></a>
+<span class="sourceLineNo">435</span>                  String visibility = myXMLReader.getField("visibility") ;<a name="line.435"></a>
+<span class="sourceLineNo">436</span>                  <a name="line.436"></a>
+<span class="sourceLineNo">437</span>                  //print the weather fields to the output.txt file and the form combobox<a name="line.437"></a>
+<span class="sourceLineNo">438</span>                  outputFile.println(lblDate.getText()) ;<a name="line.438"></a>
+<span class="sourceLineNo">439</span>                  lstWeather.addItem(lblDate.getText()) ;<a name="line.439"></a>
+<span class="sourceLineNo">440</span>                  outputFile.println("location: "+db.getField("stationName"));<a name="line.440"></a>
+<span class="sourceLineNo">441</span>                   System.out.println("location: "+(String)db.getField("stationName"));<a name="line.441"></a>
+<span class="sourceLineNo">442</span>                  lstWeather.addItem("location: "+db.getField("stationName"));<a name="line.442"></a>
+<span class="sourceLineNo">443</span>                  outputFile.println("observation_time: " + observation_time);<a name="line.443"></a>
+<span class="sourceLineNo">444</span>                  lstWeather.addItem("observation_time: " + observation_time);<a name="line.444"></a>
+<span class="sourceLineNo">445</span>                  outputFile.println("latitude: " + latitude);<a name="line.445"></a>
+<span class="sourceLineNo">446</span>                  lstWeather.addItem("latitude: " + latitude);<a name="line.446"></a>
+<span class="sourceLineNo">447</span>                  outputFile.println("longitude: " + longitude);<a name="line.447"></a>
+<span class="sourceLineNo">448</span>                  lstWeather.addItem("longitude: " + longitude);<a name="line.448"></a>
+<span class="sourceLineNo">449</span>                  outputFile.println("weather: " + weather);<a name="line.449"></a>
+<span class="sourceLineNo">450</span>                  lstWeather.addItem("weather: " + weather);<a name="line.450"></a>
+<span class="sourceLineNo">451</span>                  outputFile.println("temperature_string: " + temperature_string);<a name="line.451"></a>
+<span class="sourceLineNo">452</span>                  lstWeather.addItem("temperature_string: " + temperature_string);<a name="line.452"></a>
+<span class="sourceLineNo">453</span>                  outputFile.println("relative_humidity: " + relative_humidity);<a name="line.453"></a>
+<span class="sourceLineNo">454</span>                  lstWeather.addItem("relative_humidity: " + relative_humidity);<a name="line.454"></a>
+<span class="sourceLineNo">455</span>                  outputFile.println("pressure_string: " + pressure_string);<a name="line.455"></a>
+<span class="sourceLineNo">456</span>                  lstWeather.addItem("pressure_string: " + pressure_string);<a name="line.456"></a>
+<span class="sourceLineNo">457</span>                  outputFile.println("dewpoint_string: " + dewpoint_string);<a name="line.457"></a>
+<span class="sourceLineNo">458</span>                  lstWeather.addItem("dewpoint_string: " + dewpoint_string);<a name="line.458"></a>
+<span class="sourceLineNo">459</span>                  outputFile.println("visibility: " + visibility);<a name="line.459"></a>
+<span class="sourceLineNo">460</span>                  lstWeather.addItem("visibility: " + visibility);<a name="line.460"></a>
+<span class="sourceLineNo">461</span>                  //print the windsaloft weather to the output.txt file and the form combobox<a name="line.461"></a>
+<span class="sourceLineNo">462</span>                  String altitudes[] = {"03","06","09","12","18","24","30","36","39"} ;<a name="line.462"></a>
+<span class="sourceLineNo">463</span>                  String windsaloft = db.getField("windsaloft")+" " ;<a name="line.463"></a>
+<span class="sourceLineNo">464</span>                  NWSFB fb = new NWSFB(windsaloft) ;<a name="line.464"></a>
+<span class="sourceLineNo">465</span>                  for (int i = 0; i&lt;9 ; i++)<a name="line.465"></a>
+<span class="sourceLineNo">466</span>                  {<a name="line.466"></a>
+<span class="sourceLineNo">467</span>                     System.out.println("Altitude Weather at " + altitudes[i]+",000 feet:\tDir " + fb.getWindDirection(altitudes[i])+" Speed " + fb.getWindSpeed(altitudes[i])+ " Temperature " + fb.getWindTemp(altitudes[i]));<a name="line.467"></a>
+<span class="sourceLineNo">468</span>                     lstWeather.addItem("Altitude Weather at " + altitudes[i]+",000 feet:\tDir " + fb.getWindDirection(altitudes[i])+" Speed " + fb.getWindSpeed(altitudes[i])+ " Temperature " + fb.getWindTemp(altitudes[i]));<a name="line.468"></a>
+<span class="sourceLineNo">469</span>                     outputFile.println("Altitude Weather at " + altitudes[i]+",000 feet:\tDir " + fb.getWindDirection(altitudes[i])+" Speed " + fb.getWindSpeed(altitudes[i])+ " Temperature " + fb.getWindTemp(altitudes[i]));<a name="line.469"></a>
+<span class="sourceLineNo">470</span>                  }<a name="line.470"></a>
+<span class="sourceLineNo">471</span>                  try<a name="line.471"></a>
+<span class="sourceLineNo">472</span>                  {  //set the weather image to the XML image for each selected station on the form<a name="line.472"></a>
+<span class="sourceLineNo">473</span>                     ImageIcon weatherImage = new ImageIcon(myXMLReader.getField("icon_url_base")) ;<a name="line.473"></a>
+<span class="sourceLineNo">474</span>                     picWeather.setText(null) ;<a name="line.474"></a>
+<span class="sourceLineNo">475</span>                     picWeather.setIcon(weatherImage) ;<a name="line.475"></a>
+<span class="sourceLineNo">476</span>                  }<a name="line.476"></a>
+<span class="sourceLineNo">477</span>                  catch (Exception e)<a name="line.477"></a>
+<span class="sourceLineNo">478</span>                  {<a name="line.478"></a>
+<span class="sourceLineNo">479</span>                     System.out.println(e.getMessage()) ;<a name="line.479"></a>
+<span class="sourceLineNo">480</span>                     System.out.println("Couldn't find nws image") ;<a name="line.480"></a>
+<span class="sourceLineNo">481</span>                  }<a name="line.481"></a>
+<span class="sourceLineNo">482</span>               }<a name="line.482"></a>
+<span class="sourceLineNo">483</span>              <a name="line.483"></a>
+<span class="sourceLineNo">484</span>               outputFile.close(); <a name="line.484"></a>
+<span class="sourceLineNo">485</span>                 //close the database so others can use it<a name="line.485"></a>
+<span class="sourceLineNo">486</span>               db.close() ;<a name="line.486"></a>
+<span class="sourceLineNo">487</span>            }<a name="line.487"></a>
+<span class="sourceLineNo">488</span>            catch (Exception e) <a name="line.488"></a>
+<span class="sourceLineNo">489</span>            {<a name="line.489"></a>
+<span class="sourceLineNo">490</span>            //tell the user if there was an exception<a name="line.490"></a>
+<span class="sourceLineNo">491</span>               System.out.println(e.getMessage()) ;<a name="line.491"></a>
+<span class="sourceLineNo">492</span>               lblStatus.setText("Failed to Create Weather Report");<a name="line.492"></a>
+<span class="sourceLineNo">493</span>            }<a name="line.493"></a>
+<span class="sourceLineNo">494</span>            status("List Box Updated") ;<a name="line.494"></a>
+<span class="sourceLineNo">495</span>         }<a name="line.495"></a>
+<span class="sourceLineNo">496</span>         else<a name="line.496"></a>
+<span class="sourceLineNo">497</span>         {<a name="line.497"></a>
+<span class="sourceLineNo">498</span>            System.out.println("nothing in combobox selected") ;<a name="line.498"></a>
+<span class="sourceLineNo">499</span>         }<a name="line.499"></a>
+<span class="sourceLineNo">500</span>      }<a name="line.500"></a>
+<span class="sourceLineNo">501</span>   }<a name="line.501"></a>
+<span class="sourceLineNo">502</span><a name="line.502"></a>
+<span class="sourceLineNo">503</span>        /**<a name="line.503"></a>
+<span class="sourceLineNo">504</span>        This function is used by the constructor to create and position all the various buttons<a name="line.504"></a>
+<span class="sourceLineNo">505</span>         <a name="line.505"></a>
+<span class="sourceLineNo">506</span>        @param fmLeft an integer representing the number of pixels from the left of the frame<a name="line.506"></a>
+<span class="sourceLineNo">507</span>        @param fmTop an integer representing the number of pixels from the top of the frame<a name="line.507"></a>
+<span class="sourceLineNo">508</span>        @param title a string object representing the title that will be place on the button<a name="line.508"></a>
+<span class="sourceLineNo">509</span>        @return btn a JButton object to be placed on the form<a name="line.509"></a>
+<span class="sourceLineNo">510</span>        */ <a name="line.510"></a>
+<span class="sourceLineNo">511</span>                <a name="line.511"></a>
+<span class="sourceLineNo">512</span>   private JButton setButton(String title, int fmLeft, int fmTop)<a name="line.512"></a>
+<span class="sourceLineNo">513</span>   {<a name="line.513"></a>
+<span class="sourceLineNo">514</span>      JButton btn = new JButton(title) ;<a name="line.514"></a>
+<span class="sourceLineNo">515</span>      btn.setSize(250,25);<a name="line.515"></a>
+<span class="sourceLineNo">516</span>      btn.setLocation(fmLeft,fmTop) ;<a name="line.516"></a>
+<span class="sourceLineNo">517</span>      panel.add(btn) ;<a name="line.517"></a>
+<span class="sourceLineNo">518</span>      return btn ;<a name="line.518"></a>
+<span class="sourceLineNo">519</span>   }<a name="line.519"></a>
+<span class="sourceLineNo">520</span>        /**<a name="line.520"></a>
+<span class="sourceLineNo">521</span>        This function is used to create a combobox on the form.<a name="line.521"></a>
+<span class="sourceLineNo">522</span>   <a name="line.522"></a>
+<span class="sourceLineNo">523</span>        @param fmLeft an integer representing the number of pixels from the left of the frame<a name="line.523"></a>
+<span class="sourceLineNo">524</span>        @param fmTop an integer representing the number of pixels from the top of the frame<a name="line.524"></a>
+<span class="sourceLineNo">525</span>        @param firstItem a string object representing the contents that will be placed in the label<a name="line.525"></a>
+<span class="sourceLineNo">526</span>        @return cbo a JComboBox that will be placed at the specified location<a name="line.526"></a>
+<span class="sourceLineNo">527</span>        */ <a name="line.527"></a>
+<span class="sourceLineNo">528</span>   private JComboBox setCombobox(String firstItem, int fmLeft, int fmTop)<a name="line.528"></a>
+<span class="sourceLineNo">529</span>   {<a name="line.529"></a>
+<span class="sourceLineNo">530</span>        //create the search result combobox IN PLACE OF A LISTBOX or TEXTAREA<a name="line.530"></a>
+<span class="sourceLineNo">531</span>      String listArray[] = {firstItem} ;                 //at first make the box empty<a name="line.531"></a>
+<span class="sourceLineNo">532</span>      JComboBox cbo = new JComboBox(listArray) ;                                        //create the combobox<a name="line.532"></a>
+<span class="sourceLineNo">533</span>      cbo.setSize(400, 20) ;                                    //width, height<a name="line.533"></a>
+<span class="sourceLineNo">534</span>      cbo.setLocation(fmLeft, fmTop);                           //from left, from top<a name="line.534"></a>
+<span class="sourceLineNo">535</span>      cbo.setForeground(Color.blue) ;                                   //set the font color<a name="line.535"></a>
+<span class="sourceLineNo">536</span>      cbo.setFont(new Font("Courier New", Font.BOLD, 15)) ;<a name="line.536"></a>
+<span class="sourceLineNo">537</span>      panel.add(cbo) ; <a name="line.537"></a>
+<span class="sourceLineNo">538</span>      return cbo ;                                                      //add the combobox to the pannel<a name="line.538"></a>
+<span class="sourceLineNo">539</span>   }<a name="line.539"></a>
+<span class="sourceLineNo">540</span>                /**<a name="line.540"></a>
+<span class="sourceLineNo">541</span>        This function is used by the constructor to create and position all the various small<a name="line.541"></a>
+<span class="sourceLineNo">542</span>        labels on the frame<a name="line.542"></a>
+<span class="sourceLineNo">543</span>   <a name="line.543"></a>
+<span class="sourceLineNo">544</span>        @param fmLeft an integer representing the number of pixels from the left of the frame<a name="line.544"></a>
+<span class="sourceLineNo">545</span>        @param fmTop an integer representing the number of pixels from the top of the frame<a name="line.545"></a>
+<span class="sourceLineNo">546</span>        @param strVar a string object representing the contents that will be placed in the label<a name="line.546"></a>
+<span class="sourceLineNo">547</span>        @return label a JLabel object to label the components of the frame<a name="line.547"></a>
+<span class="sourceLineNo">548</span>        */ <a name="line.548"></a>
+<span class="sourceLineNo">549</span>   public JLabel setLabel(int fmLeft, int fmTop, String strVar, int length, int height)<a name="line.549"></a>
+<span class="sourceLineNo">550</span>   {  <a name="line.550"></a>
+<span class="sourceLineNo">551</span>      JLabel label = new JLabel(strVar) ;                   //create the label<a name="line.551"></a>
+<span class="sourceLineNo">552</span>      label.setFont(new Font("Helvetica", Font.BOLD,12)) ;  //set the font<a name="line.552"></a>
+<span class="sourceLineNo">553</span>      label.setSize(length,height);                                // Length, Height<a name="line.553"></a>
+<span class="sourceLineNo">554</span>      label.setLocation(fmLeft,fmTop) ;                     //from left, from top<a name="line.554"></a>
+<span class="sourceLineNo">555</span>      label.setForeground(Color.blue) ;                     //Colors pg 778<a name="line.555"></a>
+<span class="sourceLineNo">556</span>      if(strVar.length() &lt; 1 )<a name="line.556"></a>
+<span class="sourceLineNo">557</span>      {<a name="line.557"></a>
+<span class="sourceLineNo">558</span>         //BorderFactory pg 817<a name="line.558"></a>
+<span class="sourceLineNo">559</span>         label.setBorder(BorderFactory.createLineBorder(Color.black,1)) ;<a name="line.559"></a>
+<span class="sourceLineNo">560</span>      }<a name="line.560"></a>
+<span class="sourceLineNo">561</span>      panel.add(label) ;                                    //add the label to the panel<a name="line.561"></a>
+<span class="sourceLineNo">562</span>      return label ;                                        //also return a JLabel object    <a name="line.562"></a>
+<span class="sourceLineNo">563</span>   }<a name="line.563"></a>
+<span class="sourceLineNo">564</span>        <a name="line.564"></a>
+<span class="sourceLineNo">565</span>        /**<a name="line.565"></a>
+<span class="sourceLineNo">566</span>        This function is used to update the status label on the form.<a name="line.566"></a>
+<span class="sourceLineNo">567</span>   <a name="line.567"></a>
+<span class="sourceLineNo">568</span>        @param strMessage a string consisting of the the message that will<a name="line.568"></a>
+<span class="sourceLineNo">569</span>      be dispayed by the status label on the form<a name="line.569"></a>
+<span class="sourceLineNo">570</span>        @return none<a name="line.570"></a>
+<span class="sourceLineNo">571</span>        */      <a name="line.571"></a>
+<span class="sourceLineNo">572</span>   private void status(String strMessage)<a name="line.572"></a>
+<span class="sourceLineNo">573</span>   {<a name="line.573"></a>
+<span class="sourceLineNo">574</span>      lblStatus.setText(strMessage) ;<a name="line.574"></a>
+<span class="sourceLineNo">575</span>   }<a name="line.575"></a>
+<span class="sourceLineNo">576</span>   <a name="line.576"></a>
+<span class="sourceLineNo">577</span><a name="line.577"></a>
+<span class="sourceLineNo">578</span>                <a name="line.578"></a>
+<span class="sourceLineNo">579</span>}<a name="line.579"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>
