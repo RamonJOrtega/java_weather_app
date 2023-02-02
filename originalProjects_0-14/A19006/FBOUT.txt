@@ -1,0 +1,52 @@
+Black Mountain Aviation Center
+There are 177 airport records in the airport data base.
+
+
+Station ID: DEN
+
+The altitude Weather for 3,000 feet is: N/A
+Wind Direction: N/A
+Wind Speed: N/A
+Wind Temp: N/A
+
+The altitude Weather for 6,000 feet is: N/A
+Wind Direction: N/A
+Wind Speed: N/A
+Wind Temp: N/A
+
+The altitude Weather for 9,000 feet is: 0107+16
+Wind Direction: 010 degrees
+Wind Speed: 07 knots
+Wind Temp: +16 C
+
+The altitude Weather for 12,000 feet is: 3015+09
+Wind Direction: 300 degrees
+Wind Speed: 15 knots
+Wind Temp: +09 C
+
+The altitude Weather for 18,000 feet is: 3024-09
+Wind Direction: 300 degrees
+Wind Speed: 24 knots
+Wind Temp: -09 C
+
+The altitude Weather for 24,000 feet is: 3034-22
+Wind Direction: 300 degrees
+Wind Speed: 34 knots
+Wind Temp: -22 C
+
+The altitude Weather for 30,000 feet is: 294837 
+Wind Direction: 290 degrees
+Wind Speed: 48 knots
+Wind Temp: -37 degrees Celsius
+
+The altitude Weather for 34,000 feet is: 295244 
+Wind Direction: 290 degrees
+Wind Speed: 52 knots
+Wind Temp: -44 degrees Celsius
+
+The altitude Weather for 39,000 feet is: 295752 
+Wind Direction: 290 degrees
+Wind Speed: 57 knots
+Wind Temp: -52 degrees Celsius
+
+Program by Ramon Ortega

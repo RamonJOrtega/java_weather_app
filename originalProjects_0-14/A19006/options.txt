@@ -1,0 +1,14 @@
+-notree
+-noindex
+-nohelp 
+-nodeprecatedlist 
+-author 
+-version
+-linksource
+-tag prgm.usage
+-tag assignment.number
+-doctitle 'CISC 190 Documentation' 
+-windowtitle 'NWSFB Class Program for Week 07 Assignment A19006' 
+-header 'Program by<br>Ramon Ortega<br>Ortega\'s CISC190 Java'
+-footer 'Fall 2013 - CISC 190<br>San Diego Miramar College<br>10440 Black Mtn Road<br>San Diego, CA 92126' 
+-bottom 'Copyright 2013 by Ramon Ortega, Email: <a href="ramon.justis.ortega@gmail.com"> Ramon.Justis.Ortega@Gmail.com</a>'
