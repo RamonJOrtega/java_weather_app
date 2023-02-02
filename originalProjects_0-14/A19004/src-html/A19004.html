@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>import java.util.Scanner;<a name="line.1"></a>
+<span class="sourceLineNo">002</span>import java.io.* ;<a name="line.2"></a>
+<span class="sourceLineNo">003</span><a name="line.3"></a>
+<span class="sourceLineNo">004</span>/**<a name="line.4"></a>
+<span class="sourceLineNo">005</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.5"></a>
+<span class="sourceLineNo">006</span>@version 1.12 09/22/2013<a name="line.6"></a>
+<span class="sourceLineNo">007</span>@assignment.number Winds Aloft Report - A190-04<a name="line.7"></a>
+<span class="sourceLineNo">008</span>@prgm.usage Called from the operating system<a name="line.8"></a>
+<span class="sourceLineNo">009</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.9"></a>
+<span class="sourceLineNo">010</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.10"></a>
+<span class="sourceLineNo">011</span>*/<a name="line.11"></a>
+<span class="sourceLineNo">012</span>public class A19004<a name="line.12"></a>
+<span class="sourceLineNo">013</span>{<a name="line.13"></a>
+<span class="sourceLineNo">014</span>        static String strStationWeather ;        //declare a class level variable to hold a line of station weather<a name="line.14"></a>
+<span class="sourceLineNo">015</span>   static String strAltitudeWeather ;       //declare a class level variable to hold a line of altitude weather<a name="line.15"></a>
+<span class="sourceLineNo">016</span>        <a name="line.16"></a>
+<span class="sourceLineNo">017</span>        public static void main(String[] args) throws IOException   //main method must handle IO exceptions<a name="line.17"></a>
+<span class="sourceLineNo">018</span>        {  //declare variables<a name="line.18"></a>
+<span class="sourceLineNo">019</span>           String strAlt = " " ;<a name="line.19"></a>
+<span class="sourceLineNo">020</span>           String strAirportID = " " ;<a name="line.20"></a>
+<span class="sourceLineNo">021</span>           String strSFO = " " ;<a name="line.21"></a>
+<span class="sourceLineNo">022</span>           Scanner keyboard = new Scanner(System.in);<a name="line.22"></a>
+<span class="sourceLineNo">023</span>      //verify file exists<a name="line.23"></a>
+<span class="sourceLineNo">024</span>      File myFile = new File("FBIN.txt");<a name="line.24"></a>
+<span class="sourceLineNo">025</span>      if (!myFile.exists())<a name="line.25"></a>
+<span class="sourceLineNo">026</span>      {<a name="line.26"></a>
+<span class="sourceLineNo">027</span>         System.out.println("The file FBIN.txt cannot be found." ) ;<a name="line.27"></a>
+<span class="sourceLineNo">028</span>         System.exit(0) ;<a name="line.28"></a>
+<span class="sourceLineNo">029</span>      }<a name="line.29"></a>
+<span class="sourceLineNo">030</span>      //read the file every time the user wants an altitude weather report     <a name="line.30"></a>
+<span class="sourceLineNo">031</span>      while (strAlt.compareTo("EXIT") != 0 || strAirportID.compareTo("EXIT") != 0)<a name="line.31"></a>
+<span class="sourceLineNo">032</span>      {<a name="line.32"></a>
+<span class="sourceLineNo">033</span>         myFile = new File("FBIN.txt") ;           //Open a new file every iteration<a name="line.33"></a>
+<span class="sourceLineNo">034</span>         Scanner inputFile = new Scanner(myFile) ; <a name="line.34"></a>
+<span class="sourceLineNo">035</span>         //get the station code from the user<a name="line.35"></a>
+<span class="sourceLineNo">036</span>                   System.out.println("To get weather, enter Station Code as three letters.") ;<a name="line.36"></a>
+<span class="sourceLineNo">037</span>                   System.out.println("To exit, type exit") ;<a name="line.37"></a>
+<span class="sourceLineNo">038</span>         strAirportID = keyboard.nextLine().toUpperCase() ;<a name="line.38"></a>
+<span class="sourceLineNo">039</span>         //give the user the option to exit<a name="line.39"></a>
+<span class="sourceLineNo">040</span>         if (strAirportID.compareTo("EXIT")==0)<a name="line.40"></a>
+<span class="sourceLineNo">041</span>         {<a name="line.41"></a>
+<span class="sourceLineNo">042</span>            System.exit(0) ;<a name="line.42"></a>
+<span class="sourceLineNo">043</span>         }<a name="line.43"></a>
+<span class="sourceLineNo">044</span>         //get the altitude of interest<a name="line.44"></a>
+<span class="sourceLineNo">045</span>                   System.out.println("Enter altitude. Ex: input 18 for 18,000ft") ;<a name="line.45"></a>
+<span class="sourceLineNo">046</span>         strAlt = keyboard.nextLine() ;<a name="line.46"></a>
+<span class="sourceLineNo">047</span>         boolean flag = false ;           //initialize a flag to for checking valid station codes<a name="line.47"></a>
+<span class="sourceLineNo">048</span>     <a name="line.48"></a>
+<span class="sourceLineNo">049</span>              while (inputFile.hasNext())      //read the file<a name="line.49"></a>
+<span class="sourceLineNo">050</span>         {<a name="line.50"></a>
+<span class="sourceLineNo">051</span>            String line = inputFile.nextLine()+" " ;  <a name="line.51"></a>
+<span class="sourceLineNo">052</span>            if (line.length() &gt;= 2 )<a name="line.52"></a>
+<span class="sourceLineNo">053</span>            {  //when the file line station code matches the user input, store<a name="line.53"></a>
+<span class="sourceLineNo">054</span>               //the whole line in strStationWeather class variable and<a name="line.54"></a>
+<span class="sourceLineNo">055</span>               //store the 7 character altitude weather in the <a name="line.55"></a>
+<span class="sourceLineNo">056</span>               //strAltitudeWeather class variable <a name="line.56"></a>
+<span class="sourceLineNo">057</span>               if (line.substring(0,3).compareTo(strAirportID) == 0 )<a name="line.57"></a>
+<span class="sourceLineNo">058</span>               {<a name="line.58"></a>
+<span class="sourceLineNo">059</span>                  strStationWeather = line;<a name="line.59"></a>
+<span class="sourceLineNo">060</span>                  strAltitudeWeather = getAltitudeWeather(strAlt);<a name="line.60"></a>
+<span class="sourceLineNo">061</span>                  flag = true ;<a name="line.61"></a>
+<span class="sourceLineNo">062</span>               }<a name="line.62"></a>
+<span class="sourceLineNo">063</span>            }<a name="line.63"></a>
+<span class="sourceLineNo">064</span>         }<a name="line.64"></a>
+<span class="sourceLineNo">065</span>         //if the user entered a valid station code, display the weather for that airport<a name="line.65"></a>
+<span class="sourceLineNo">066</span>         //at the user specified altitude using the methodes created<a name="line.66"></a>
+<span class="sourceLineNo">067</span>         if (flag == true)<a name="line.67"></a>
+<span class="sourceLineNo">068</span>         {<a name="line.68"></a>
+<span class="sourceLineNo">069</span>            System.out.println("Black Mountain Aviation");<a name="line.69"></a>
+<span class="sourceLineNo">070</span>                      System.out.print("Weather for ");<a name="line.70"></a>
+<span class="sourceLineNo">071</span>                      System.out.print(strAirportID);<a name="line.71"></a>
+<span class="sourceLineNo">072</span>                      System.out.print(" at an altitude of ");<a name="line.72"></a>
+<span class="sourceLineNo">073</span>                      System.out.print(strAlt);<a name="line.73"></a>
+<span class="sourceLineNo">074</span>                      System.out.println(",000 feet");<a name="line.74"></a>
+<span class="sourceLineNo">075</span>                      System.out.println(" ") ;<a name="line.75"></a>
+<span class="sourceLineNo">076</span>                      System.out.println("Wind Direction: " + getWindDir(strAlt)) ;<a name="line.76"></a>
+<span class="sourceLineNo">077</span>                      System.out.println("Wind Speed: " + getWindSpeed(strAlt)) ;<a name="line.77"></a>
+<span class="sourceLineNo">078</span>                      System.out.println("Wind Temperature: " + getWindTemp(strAlt)) ;<a name="line.78"></a>
+<span class="sourceLineNo">079</span>                      System.out.println(" ") ; <a name="line.79"></a>
+<span class="sourceLineNo">080</span>            System.out.println("Program by Ramon Ortega") ;<a name="line.80"></a>
+<span class="sourceLineNo">081</span>            System.out.println(" ") ;<a name="line.81"></a>
+<span class="sourceLineNo">082</span>         }     <a name="line.82"></a>
+<span class="sourceLineNo">083</span>         else<a name="line.83"></a>
+<span class="sourceLineNo">084</span>         {  //if the user didn't enter an airport code in the file, let him try again<a name="line.84"></a>
+<span class="sourceLineNo">085</span>            System.out.println("Airport code not found. Enter new airport code.") ;<a name="line.85"></a>
+<span class="sourceLineNo">086</span>         }<a name="line.86"></a>
+<span class="sourceLineNo">087</span>         inputFile.close(); //close the file at the end of every loop so that it can be opened again if needed.<a name="line.87"></a>
+<span class="sourceLineNo">088</span>      }<a name="line.88"></a>
+<span class="sourceLineNo">089</span>        }<a name="line.89"></a>
+<span class="sourceLineNo">090</span>        <a name="line.90"></a>
+<span class="sourceLineNo">091</span>        /**<a name="line.91"></a>
+<span class="sourceLineNo">092</span>        This function accepts a string called strAlt representing an <a name="line.92"></a>
+<span class="sourceLineNo">093</span>        altitude and returns an integer representing the starting<a name="line.93"></a>
+<span class="sourceLineNo">094</span>        character position of the altitude weather in the station weather string<a name="line.94"></a>
+<span class="sourceLineNo">095</span>        <a name="line.95"></a>
+<span class="sourceLineNo">096</span>        @param strAlt Altitude in thousands as a string<a name="line.96"></a>
+<span class="sourceLineNo">097</span>        @return an integer representing the character postion with the station weather<a name="line.97"></a>
+<span class="sourceLineNo">098</span>        */<a name="line.98"></a>
+<span class="sourceLineNo">099</span>        public static int getPos(String strAlt)<a name="line.99"></a>
+<span class="sourceLineNo">100</span>        {<a name="line.100"></a>
+<span class="sourceLineNo">101</span>                int intRet = 0 ;<a name="line.101"></a>
+<span class="sourceLineNo">102</span><a name="line.102"></a>
+<span class="sourceLineNo">103</span>                switch (strAlt)<a name="line.103"></a>
+<span class="sourceLineNo">104</span>                {<a name="line.104"></a>
+<span class="sourceLineNo">105</span>                        case "3" :<a name="line.105"></a>
+<span class="sourceLineNo">106</span>                                intRet = 4;<a name="line.106"></a>
+<span class="sourceLineNo">107</span>                                break;<a name="line.107"></a>
+<span class="sourceLineNo">108</span>                        case "6" :<a name="line.108"></a>
+<span class="sourceLineNo">109</span>                                intRet = 9;<a name="line.109"></a>
+<span class="sourceLineNo">110</span>                                break;<a name="line.110"></a>
+<span class="sourceLineNo">111</span>                        case "9" :<a name="line.111"></a>
+<span class="sourceLineNo">112</span>                                intRet = 17;<a name="line.112"></a>
+<span class="sourceLineNo">113</span>                                break;<a name="line.113"></a>
+<span class="sourceLineNo">114</span>                        case "12" :<a name="line.114"></a>
+<span class="sourceLineNo">115</span>                                intRet = 25;<a name="line.115"></a>
+<span class="sourceLineNo">116</span>                                break;<a name="line.116"></a>
+<span class="sourceLineNo">117</span>                        case "18" :<a name="line.117"></a>
+<span class="sourceLineNo">118</span>                                intRet = 33;                    <a name="line.118"></a>
+<span class="sourceLineNo">119</span>                                break;<a name="line.119"></a>
+<span class="sourceLineNo">120</span>                        case "24" :<a name="line.120"></a>
+<span class="sourceLineNo">121</span>                                intRet = 41;<a name="line.121"></a>
+<span class="sourceLineNo">122</span>                                break;<a name="line.122"></a>
+<span class="sourceLineNo">123</span>                        case "30" :<a name="line.123"></a>
+<span class="sourceLineNo">124</span>                                intRet = 49;<a name="line.124"></a>
+<span class="sourceLineNo">125</span>                                break;<a name="line.125"></a>
+<span class="sourceLineNo">126</span>                        case "34" :<a name="line.126"></a>
+<span class="sourceLineNo">127</span>                                intRet = 56;<a name="line.127"></a>
+<span class="sourceLineNo">128</span>                                break;  <a name="line.128"></a>
+<span class="sourceLineNo">129</span>                        case "39" :<a name="line.129"></a>
+<span class="sourceLineNo">130</span>                                intRet = 63;<a name="line.130"></a>
+<span class="sourceLineNo">131</span>                                break;<a name="line.131"></a>
+<span class="sourceLineNo">132</span>                        default :<a name="line.132"></a>
+<span class="sourceLineNo">133</span>                                intRet = 4;<a name="line.133"></a>
+<span class="sourceLineNo">134</span>                                break;<a name="line.134"></a>
+<span class="sourceLineNo">135</span>                }<a name="line.135"></a>
+<span class="sourceLineNo">136</span>                return intRet;<a name="line.136"></a>
+<span class="sourceLineNo">137</span>        }<a name="line.137"></a>
+<span class="sourceLineNo">138</span>        /**<a name="line.138"></a>
+<span class="sourceLineNo">139</span>        This function will call getpos to determine where to <a name="line.139"></a>
+<span class="sourceLineNo">140</span>        start extracting seven characters from the class level variable<a name="line.140"></a>
+<span class="sourceLineNo">141</span>        containing the Station Weather.<a name="line.141"></a>
+<span class="sourceLineNo">142</span>        <a name="line.142"></a>
+<span class="sourceLineNo">143</span>        @param strAlt - string representing altitude in thousands of feet.<a name="line.143"></a>
+<span class="sourceLineNo">144</span>        @return seven character string representing the altitude weather.<a name="line.144"></a>
+<span class="sourceLineNo">145</span>        */<a name="line.145"></a>
+<span class="sourceLineNo">146</span>        public static String getAltitudeWeather(String strAlt)<a name="line.146"></a>
+<span class="sourceLineNo">147</span>        {<a name="line.147"></a>
+<span class="sourceLineNo">148</span>                int intPos = getPos(strAlt);<a name="line.148"></a>
+<span class="sourceLineNo">149</span>                return strStationWeather.substring(intPos, intPos + 7) ;<a name="line.149"></a>
+<span class="sourceLineNo">150</span>        }<a name="line.150"></a>
+<span class="sourceLineNo">151</span>        /**<a name="line.151"></a>
+<span class="sourceLineNo">152</span>        This function will call getAltitudeWeather and extract the<a name="line.152"></a>
+<span class="sourceLineNo">153</span>        first two characters and concatenate a zero to the<a name="line.153"></a>
+<span class="sourceLineNo">154</span>        return value.<a name="line.154"></a>
+<span class="sourceLineNo">155</span>        <a name="line.155"></a>
+<span class="sourceLineNo">156</span>        @param strAlt String representing altitude in thousands of feet.<a name="line.156"></a>
+<span class="sourceLineNo">157</span>        @return windDir String representing wind direction at the specified altitude<a name="line.157"></a>
+<span class="sourceLineNo">158</span>        */<a name="line.158"></a>
+<span class="sourceLineNo">159</span>        public static String getWindDir(String strAlt)<a name="line.159"></a>
+<span class="sourceLineNo">160</span>        {<a name="line.160"></a>
+<span class="sourceLineNo">161</span>      String windDir = "XX" ;<a name="line.161"></a>
+<span class="sourceLineNo">162</span>      if(getAltitudeWeather(strAlt).substring(0,2).compareTo("  ")== 0)<a name="line.162"></a>
+<span class="sourceLineNo">163</span>      {<a name="line.163"></a>
+<span class="sourceLineNo">164</span>         windDir = "N/A" ;<a name="line.164"></a>
+<span class="sourceLineNo">165</span>      }<a name="line.165"></a>
+<span class="sourceLineNo">166</span>      else if (getAltitudeWeather(strAlt).substring(0,4).compareTo("9900")== 0)<a name="line.166"></a>
+<span class="sourceLineNo">167</span>      {<a name="line.167"></a>
+<span class="sourceLineNo">168</span>         windDir = "Calm" ;<a name="line.168"></a>
+<span class="sourceLineNo">169</span>      }<a name="line.169"></a>
+<span class="sourceLineNo">170</span>      else if(Integer.parseInt(getAltitudeWeather(strAlt).substring(0,2)) &gt; 36)<a name="line.170"></a>
+<span class="sourceLineNo">171</span>      {<a name="line.171"></a>
+<span class="sourceLineNo">172</span>         windDir = Integer.parseInt(getAltitudeWeather(strAlt).substring(0,2)) - 50 + "0 degrees";<a name="line.172"></a>
+<span class="sourceLineNo">173</span>      }<a name="line.173"></a>
+<span class="sourceLineNo">174</span>      else <a name="line.174"></a>
+<span class="sourceLineNo">175</span>      {<a name="line.175"></a>
+<span class="sourceLineNo">176</span>         windDir = getAltitudeWeather(strAlt).substring(0,2)+ "0 degrees" ;<a name="line.176"></a>
+<span class="sourceLineNo">177</span>      }   <a name="line.177"></a>
+<span class="sourceLineNo">178</span>      return windDir;<a name="line.178"></a>
+<span class="sourceLineNo">179</span>        }<a name="line.179"></a>
+<span class="sourceLineNo">180</span>   /**<a name="line.180"></a>
+<span class="sourceLineNo">181</span>        This calls the method, getAltitudeWeather extract the 2nd and 3rd<a name="line.181"></a>
+<span class="sourceLineNo">182</span>   characters of the stationWeather string. The method returns them as<a name="line.182"></a>
+<span class="sourceLineNo">183</span>   the wind speed at the specified altitude.<a name="line.183"></a>
+<span class="sourceLineNo">184</span>        <a name="line.184"></a>
+<span class="sourceLineNo">185</span>        @param strAlt Altitude in thousands as a string<a name="line.185"></a>
+<span class="sourceLineNo">186</span>        @return windSpeed The wind speed at the specified altitude<a name="line.186"></a>
+<span class="sourceLineNo">187</span>        */<a name="line.187"></a>
+<span class="sourceLineNo">188</span>        public static String getWindSpeed(String strAlt)<a name="line.188"></a>
+<span class="sourceLineNo">189</span>        {<a name="line.189"></a>
+<span class="sourceLineNo">190</span>      String windSpeed = "XX" ;<a name="line.190"></a>
+<span class="sourceLineNo">191</span>      if(getAltitudeWeather(strAlt).substring(2,4).compareTo("  ") == 0)<a name="line.191"></a>
+<span class="sourceLineNo">192</span>      {<a name="line.192"></a>
+<span class="sourceLineNo">193</span>         windSpeed = "N/A" ;<a name="line.193"></a>
+<span class="sourceLineNo">194</span>      }<a name="line.194"></a>
+<span class="sourceLineNo">195</span>      else if (getAltitudeWeather(strAlt).substring(0,4).compareTo("9900") == 0)<a name="line.195"></a>
+<span class="sourceLineNo">196</span>      {<a name="line.196"></a>
+<span class="sourceLineNo">197</span>         windSpeed = "Calm" ;      <a name="line.197"></a>
+<span class="sourceLineNo">198</span>      }<a name="line.198"></a>
+<span class="sourceLineNo">199</span>      else if (Integer.parseInt(getAltitudeWeather(strAlt).substring(0,2)) &gt; 36)<a name="line.199"></a>
+<span class="sourceLineNo">200</span>      {<a name="line.200"></a>
+<span class="sourceLineNo">201</span>         windSpeed = Integer.parseInt(getAltitudeWeather(strAlt).substring(2,4)) + 100 + " knots" ;<a name="line.201"></a>
+<span class="sourceLineNo">202</span>      }<a name="line.202"></a>
+<span class="sourceLineNo">203</span>      else <a name="line.203"></a>
+<span class="sourceLineNo">204</span>      {<a name="line.204"></a>
+<span class="sourceLineNo">205</span>         windSpeed = getAltitudeWeather(strAlt).substring(2,4)+ " knots" ;<a name="line.205"></a>
+<span class="sourceLineNo">206</span>      }<a name="line.206"></a>
+<span class="sourceLineNo">207</span>                return windSpeed;<a name="line.207"></a>
+<span class="sourceLineNo">208</span>        }<a name="line.208"></a>
+<span class="sourceLineNo">209</span>   /**<a name="line.209"></a>
+<span class="sourceLineNo">210</span>        This method calls the method, getAltitudeWeather extract final characters<a name="line.210"></a>
+<span class="sourceLineNo">211</span>   of the stationWeather string. The method returns them as<a name="line.211"></a>
+<span class="sourceLineNo">212</span>   the temperature at the specified altitude.<a name="line.212"></a>
+<span class="sourceLineNo">213</span>        <a name="line.213"></a>
+<span class="sourceLineNo">214</span>        @param strAlt Altitude in thousands as a string<a name="line.214"></a>
+<span class="sourceLineNo">215</span>        @return windTemp The temperature of the air at the specified altitude<a name="line.215"></a>
+<span class="sourceLineNo">216</span>        */<a name="line.216"></a>
+<span class="sourceLineNo">217</span>        public static String getWindTemp(String strAlt)<a name="line.217"></a>
+<span class="sourceLineNo">218</span>        {<a name="line.218"></a>
+<span class="sourceLineNo">219</span>      String windTemp = "XX" ;<a name="line.219"></a>
+<span class="sourceLineNo">220</span>      if (getAltitudeWeather(strAlt).substring(4,5).compareTo(" ") == 0 )<a name="line.220"></a>
+<span class="sourceLineNo">221</span>      {<a name="line.221"></a>
+<span class="sourceLineNo">222</span>         windTemp = "N/A" ;<a name="line.222"></a>
+<span class="sourceLineNo">223</span>      }<a name="line.223"></a>
+<span class="sourceLineNo">224</span>      else if (Integer.parseInt(strAlt) &gt; 24 )<a name="line.224"></a>
+<span class="sourceLineNo">225</span>      {<a name="line.225"></a>
+<span class="sourceLineNo">226</span>         windTemp = "-" + getAltitudeWeather(strAlt).substring(4,6) + " degrees Celsius" ;<a name="line.226"></a>
+<span class="sourceLineNo">227</span>      }<a name="line.227"></a>
+<span class="sourceLineNo">228</span>      else<a name="line.228"></a>
+<span class="sourceLineNo">229</span>      {<a name="line.229"></a>
+<span class="sourceLineNo">230</span>         windTemp = getAltitudeWeather(strAlt).substring(4,7) + " C" ;<a name="line.230"></a>
+<span class="sourceLineNo">231</span>      }<a name="line.231"></a>
+<span class="sourceLineNo">232</span>                return windTemp ;<a name="line.232"></a>
+<span class="sourceLineNo">233</span>        }<a name="line.233"></a>
+<span class="sourceLineNo">234</span>}<a name="line.234"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>
