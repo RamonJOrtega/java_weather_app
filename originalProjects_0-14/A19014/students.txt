@@ -1,0 +1,7 @@
+1010191,Bill, Beckwith, 123 Main Street, San Diego, CA, 92101
+3919281,Susan, Davies, 32211 Market Street, Vista, CA, 92000
+2919227,John, Miller, 61 Tyler Ave, San Marcos, CA, 92001
+2991991,Mark, Simpson, 221 Maple Street, Escondido, CA, 92002
+1002112,Dave, Johnson, 4921 Oak Drive, Escondido, CA, 92002
+9102918,Sandy, Billings, 7311 Apple Drive, Vista, CA, 92000 
+7717271,Gary, Smith, 21 Cherry Point Drive, La Mesa, CA, 92003

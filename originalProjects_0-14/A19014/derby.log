@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sun Dec 01 22:46:11 PST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.3.0 - (1405108): instance a816c00e-0142-b20e-9b70-0000034ac598 
+on database directory C:\Users\Ramon\Documents\Java JGrasp\A19013\FALL2013  with class loader sun.misc.Launcher$AppClassLoader@3b061299 
+Loaded from file:/C:/Program%20Files/Java/jdk1.7.0_45/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_45-b18
+user.dir=C:\Users\Ramon\Documents\Java JGrasp\A19013
+os.name=Windows Vista
+os.arch=amd64
+os.version=6.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
