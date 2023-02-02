@@ -1,0 +1,161 @@
+StationID,StationName,State 
+KABR,Aberdeen Regional Airport,SD
+KABI,Abilene Regional Airport,TX
+KALS,Alamosa Muni(awos),CO
+KALB,Albany International Airport,NY
+KABQ,Albuquerque Intl Airport,NM
+KAXN,Alexandria,MN
+KAST,Astoria/Clatsop,OR
+KACY,Atlantic City International Airport,NJ
+KBGR,Bangor International Airport,ME
+KBML,Berlin Municipal Airport,NH
+KBIL,Billings/Logan Intl Airport,MT
+KBHM,Birmingham International Airport,AL
+KBIH,Bishop Airport,CA
+KBLH,Blythe Airport,CA
+KBOI,Boise Municipal,ID
+KBOS,Boston,MA
+KBRO,Brownsville / South Padre Island Intl Airport,TX
+KBCE,Bryce Canyon,UT
+KBRL,Burlington Regional Airport,IA
+KCGI,Cape Girardeau Regional Airport,MO
+KCAR,Caribou Municipal Airport,ME
+KMKC,Charles B Wheeler Downtown Airport,MO
+KCRW,Charleston,WV
+KCHS,Charleston Air Force Base,SC
+KCLE,Cleveland-Hopkins International Airport,OH
+KCLL,College Station,TX
+KCAE,Columbia Metropolitan Airport,SC
+KCOU,Columbia Regional Airport,MO
+KCSG,Columbus Metropolitan Airport,GA
+KCRP,Corpus Christi International Airport,TX
+KCVG,Covington / Cincinnati / Northern Kentucky,KY
+KDAL,Dallas Love Field,TX
+KDRT,Del Rio International Airport,TX
+KDEN,Denver Intnl Arpt,CO
+KDSM,Des Moines International Airport,IA
+KDIK,Dickinson Theodore Roosevelt Regional Airport,ND
+KDLN,Dillon Airport,MT
+KDBQ,Dubuque Regional Airport,IA
+KDLH,Duluth International Airport,MN
+KELP,El Paso International Airport,TX
+KEKN,Elkins-Randolph County-Jennings Randolph Field,WV
+KELY,Ely/Yelland Field,NV
+KEVV,Evansville Regional Airport,IN
+KINL,Falls International Airport,MN
+KFMN,Farmington Regional,NM
+KFLO,Florence Regional Airport,SC
+KFSM,Fort Smith Regional Airport,AR
+KFWA,Fort Wayne International Airport,IN
+KFAT,Fresno Air Terminal,CA
+KGAG,Gage Airport,OK
+KGCK,Garden City Regional Airport,KS
+KGGW,Glasgow Intl Arpt,MT
+KGLD,Goodland,KS
+KGFK,Grand Forks International Airport,ND
+KGRI,Grand Island,NE
+KGJT,Grand Junction,CO
+KGTF,Great Falls Intl Airport,MT
+KBUF,Greater Buffalo International Airport,NY
+KGRB,Green Bay,WI
+KGSP,Greer,SC
+KATL,Hartsfield-Jackson/Atlanta International Airport,GA
+KHOU,Houston Hobby Airport,TX
+KHSV,Huntsville International / Jones Field,AL
+KIND,Indianapolis International Airport,IN
+KJAN,Jackson International Airport,MS
+KJAX,Jacksonville International Airport,FL
+KJOT,Joliet Park district,IL
+KGPI,Kalispell/Glacier,MT
+KEYW,Key West Airport,FL
+KTYS,Knoxville,TN
+KLSE,La Crosse Municipal Airport,WI
+KLCH,Lake Charles Regional Airport,LA
+KLKV,Lakeview (awos),OR
+KSTL,Lambert-St. Louis International Airport,MO
+KWJF,Lancaster/Fox F,CA
+KLND,Lander/Hunt Field,WY
+KLRD,Laredo International Airport,TX
+KLAS,Las Vegas/Mccarran,NV
+KLWS,Lewiston (amos),ID
+KLIT,Little Rock,AR
+KLOU,Louisville,KY
+KLBB,Lubbock International Airport,TX
+KMRF,Marfa,TX
+KMQT,Marquette,MI
+KMCW,Mason City Municipal Airport,IA
+KMLB,Melbourne International Airport,FL
+KMEM,Memphis International Airport,TN
+KEMI,Meridian,MS
+KMIA,Miami International Airport,FL
+KMLS,Miles City,MT
+KMSP,Minneapolis-St. Paul International Airport,MN
+KMOT,Minot International Airport,ND
+KMOB,Mobile Regional Airport,AL
+KSIY,Montague/Siskiyou,CA
+KMGM,Montgomery,AL
+KMKG,Muskegon County Airport,MI
+KACK,Nantucket Memorial Airport,MA
+KBNA,Nashville International Airport,TN
+KMSY,New Orleans International Airport,LA
+KJFK,New York/John F. Kennedy Intl Airport,NY
+KORF,Norfolk International Airport,VA
+KOTH,North Bend (awos),OR
+KONL,O Neill (Baker Field),NE
+KOKC,Oklahoma City,OK
+KOMA,Omaha,NE
+KONT,Ontario Intl Arpt,CA
+KPSX,Palacios Municipal Airport,TX
+KPFN,Panama City-Bay County Intl Airport,FL
+KPHX,Phoenix/Sky Harbor,AZ
+KPIR,Pierre Regional Airport,SD
+KAGC,Pittsburgh,PA
+KPLB,Plattsburgh,NY
+KPIH,Pocatello Municipal,ID
+KCMH,Port Columbus International Airport,OH
+KPWM,Portland International Jetport,ME
+KPDX,Portland Intl Arpt,OR
+KPRC,Prescott/Love Fld,AZ
+KPUB,Pueblo Memorial(aw),CO
+KRDU,Raleigh-Durham International Airport,NC
+KRAP,Rapid City Regional Airport,SD
+KRBL,Red Bluff Municipal,CA
+KRDM,Redmond (awos),OR
+KRNO,Reno Tahoe International Airport,NV
+KRIC,Richmond International Airport,VA
+KAMA,Rick Husband Amarillo Intl Airport,TX
+KROA,Roanoke Regional Airport,VA
+KRKS,Rock Springs,WY
+KROW,Roswell/Industrial,NM
+KSAC,Sacramento/Executiv,CA
+KSLN,Salina Municipal Airport,KS
+KSLC,Salt Lake City International,UT
+KSAT,San Antonio International Airport,TX
+KSAN,San Diego/Lindbergh,CA
+KSFO,San Francisco Intl Airport,CA
+KSBA,Santa Barbara Muni,CA
+KSAV,Savannah International Airport,GA
+KPSB,Scappoose Industrial Apk (1s4),OR
+KBFF,Scottsbluff,NE
+KSEA,Seattle-Tacoma Intl Airport,WA
+KSHV,Shreveport Regional Airport,LA
+KFSD,Sioux Falls,SD
+KGEG,Spokane Intl Arpt,WA
+KSPI,Springfield,IL
+KSGF,Springfield Regional Airport,MO
+KPIE,St. Petersburg / Clea,FL
+KSYR,Syracuse Hancock International Airport,NY
+KTLH,Tallahassee Regional Airport,FL
+KTVC,Traverse City,MI
+KTRI,Tri-Cities Airport,TN
+KTUS,Tucson Intl Airport,AZ
+KTCC,Tucumcari Municipal,NM
+KTUL,Tulsa International Airport,OK
+KSPS,Wichita Falls,TX
+KICT,Wichita Mid-Continent Airport,KS
+KAVP,Wilkes-Barre / Scranton Intl Airport,PA
+KILM,Wilmington,NC
+KBDL,Windsor Locks,CT
+KINK,Winkler County Airport,TX
+KYKM,Yakima Air Term,WA
+

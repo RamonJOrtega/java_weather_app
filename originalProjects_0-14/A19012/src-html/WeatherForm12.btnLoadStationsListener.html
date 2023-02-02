@@ -1,0 +1,631 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>import java.awt.*;<a name="line.1"></a>
+<span class="sourceLineNo">002</span>import java.awt.event.* ;<a name="line.2"></a>
+<span class="sourceLineNo">003</span>import javax.swing.*;<a name="line.3"></a>
+<span class="sourceLineNo">004</span>import java.util.StringTokenizer ;<a name="line.4"></a>
+<span class="sourceLineNo">005</span>import java.io.*;<a name="line.5"></a>
+<span class="sourceLineNo">006</span>import java.util.Scanner;<a name="line.6"></a>
+<span class="sourceLineNo">007</span>import java.util.ArrayList ;<a name="line.7"></a>
+<span class="sourceLineNo">008</span>/**<a name="line.8"></a>
+<span class="sourceLineNo">009</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.9"></a>
+<span class="sourceLineNo">010</span>@version 1.01 11/18/2013<a name="line.10"></a>
+<span class="sourceLineNo">011</span>@assignment.number GUI w/Airport Status - A190-12<a name="line.11"></a>
+<span class="sourceLineNo">012</span>@prgm.usage Called from the operating system<a name="line.12"></a>
+<span class="sourceLineNo">013</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.13"></a>
+<span class="sourceLineNo">014</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.14"></a>
+<span class="sourceLineNo">015</span>*/ <a name="line.15"></a>
+<span class="sourceLineNo">016</span>public class WeatherForm12 extends JFrame<a name="line.16"></a>
+<span class="sourceLineNo">017</span>{<a name="line.17"></a>
+<span class="sourceLineNo">018</span>// =============================<a name="line.18"></a>
+<span class="sourceLineNo">019</span>// Class Level Variables<a name="line.19"></a>
+<span class="sourceLineNo">020</span>//============================== <a name="line.20"></a>
+<span class="sourceLineNo">021</span>                                 <a name="line.21"></a>
+<span class="sourceLineNo">022</span>   private JPanel panel;            //a Jpanel used to place bottons and data on<a name="line.22"></a>
+<span class="sourceLineNo">023</span>   private JComboBox cboApt ;       //a JComboBox object used to hold the 3 letter station ID's of airports<a name="line.23"></a>
+<span class="sourceLineNo">024</span>   private JComboBox cboAlt ;       //a JComboBox object used to hold the altitudes of certain airport weather strings<a name="line.24"></a>
+<span class="sourceLineNo">025</span>   private JButton btnLoadStations ;//a JButton object used to call the btnLoadStations() function<a name="line.25"></a>
+<span class="sourceLineNo">026</span>   private JButton btnLoadWeather ; //a JButton object used to call the btnLoadWeather() function<a name="line.26"></a>
+<span class="sourceLineNo">027</span>   private JLabel txtAptStatus;     //a JLabel object that will serve as the header to the airport status<a name="line.27"></a>
+<span class="sourceLineNo">028</span><a name="line.28"></a>
+<span class="sourceLineNo">029</span>//panel is inside frame<a name="line.29"></a>
+<span class="sourceLineNo">030</span><a name="line.30"></a>
+<span class="sourceLineNo">031</span><a name="line.31"></a>
+<span class="sourceLineNo">032</span>   /**<a name="line.32"></a>
+<span class="sourceLineNo">033</span>   This function is the constructor. It creates the form and places all labels, buttons, comboboxes, and<a name="line.33"></a>
+<span class="sourceLineNo">034</span>   text fields on a panel and adds it to the frame. Then it sets everything to visible. The constructor<a name="line.34"></a>
+<span class="sourceLineNo">035</span>   also calls loadAirports() and loadAltitudes to pobulate the comboboxes<a name="line.35"></a>
+<span class="sourceLineNo">036</span>   <a name="line.36"></a>
+<span class="sourceLineNo">037</span>   @param none<a name="line.37"></a>
+<span class="sourceLineNo">038</span>   @return none<a name="line.38"></a>
+<span class="sourceLineNo">039</span>   */ <a name="line.39"></a>
+<span class="sourceLineNo">040</span>   public WeatherForm12() <a name="line.40"></a>
+<span class="sourceLineNo">041</span>   {<a name="line.41"></a>
+<span class="sourceLineNo">042</span>   // Set the JFrame Parameters<a name="line.42"></a>
+<span class="sourceLineNo">043</span>      setTitle("A19012 Fall 2013");<a name="line.43"></a>
+<span class="sourceLineNo">044</span>      setSize(500, 700) ;<a name="line.44"></a>
+<span class="sourceLineNo">045</span>      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<a name="line.45"></a>
+<span class="sourceLineNo">046</span>   // Set the JPanel Parameters<a name="line.46"></a>
+<span class="sourceLineNo">047</span>      panel = new JPanel(null) ; //null gets x y axis placement<a name="line.47"></a>
+<span class="sourceLineNo">048</span>      panel.setPreferredSize(new Dimension(490,690)) ;<a name="line.48"></a>
+<span class="sourceLineNo">049</span>      panel.setBackground(Color.lightGray) ;<a name="line.49"></a>
+<span class="sourceLineNo">050</span>      getContentPane().add(panel);      <a name="line.50"></a>
+<span class="sourceLineNo">051</span>   // JLabel object used to display the large title on the window<a name="line.51"></a>
+<span class="sourceLineNo">052</span>      JLabel lblTitle;         <a name="line.52"></a>
+<span class="sourceLineNo">053</span>   //The large label title is special and needs its own formating<a name="line.53"></a>
+<span class="sourceLineNo">054</span>      lblTitle = new JLabel("Black Mountain Aviation Center");<a name="line.54"></a>
+<span class="sourceLineNo">055</span>   //Set the font to 24 points (24 points = 1 inch)<a name="line.55"></a>
+<span class="sourceLineNo">056</span>      lblTitle.setFont(new Font("Helvetica", Font.BOLD, 24)) ;<a name="line.56"></a>
+<span class="sourceLineNo">057</span>   //Set the label box to 410 pixels wide and 25 pixels high)<a name="line.57"></a>
+<span class="sourceLineNo">058</span>      lblTitle.setSize(410,25) ;<a name="line.58"></a>
+<span class="sourceLineNo">059</span>   //Set the label position to 45 pixels from the LEFT and 25 from the TOP     <a name="line.59"></a>
+<span class="sourceLineNo">060</span>      lblTitle.setLocation(45,25) ;<a name="line.60"></a>
+<span class="sourceLineNo">061</span>   //Set the label color to blue<a name="line.61"></a>
+<span class="sourceLineNo">062</span>      lblTitle.setForeground(Color.blue) ;<a name="line.62"></a>
+<span class="sourceLineNo">063</span>   //Add the label to the panel<a name="line.63"></a>
+<span class="sourceLineNo">064</span>      panel.add(lblTitle) ;<a name="line.64"></a>
+<span class="sourceLineNo">065</span>   <a name="line.65"></a>
+<span class="sourceLineNo">066</span>   //set the lables for the form by colling the setLabel() function<a name="line.66"></a>
+<span class="sourceLineNo">067</span>      setLabel(25, 100, "Select Airport") ;<a name="line.67"></a>
+<span class="sourceLineNo">068</span>      setLabel(25, 150, "Select Altitude") ;<a name="line.68"></a>
+<span class="sourceLineNo">069</span>      setLabel(25, 200, "Wind Dir") ;<a name="line.69"></a>
+<span class="sourceLineNo">070</span>      setLabel(25, 225, "Wind Speed") ; <a name="line.70"></a>
+<span class="sourceLineNo">071</span>      setLabel(25, 250, "Wind Temp") ;<a name="line.71"></a>
+<span class="sourceLineNo">072</span>      setLabel(25, 275, "StationID") ;<a name="line.72"></a>
+<span class="sourceLineNo">073</span>      setLabel(225, 200, "Latitude") ;<a name="line.73"></a>
+<span class="sourceLineNo">074</span>      setLabel(225, 225 ,"Longitude") ;<a name="line.74"></a>
+<span class="sourceLineNo">075</span>      setLabel(225, 250 ,"Surface Temp") ;<a name="line.75"></a>
+<span class="sourceLineNo">076</span>      setLabel(225, 275 ,"Relative Humidity") ;<a name="line.76"></a>
+<span class="sourceLineNo">077</span>   //set text fields with initial sting literals<a name="line.77"></a>
+<span class="sourceLineNo">078</span>   //these literals will be changed when the "updateTextBoxes()"<a name="line.78"></a>
+<span class="sourceLineNo">079</span>   //function is called, for now just place them on the Form.<a name="line.79"></a>
+<span class="sourceLineNo">080</span>      setTextField(110, 200, "");<a name="line.80"></a>
+<span class="sourceLineNo">081</span>      setTextField(110, 225, "");<a name="line.81"></a>
+<span class="sourceLineNo">082</span>      setTextField(110, 250, "");<a name="line.82"></a>
+<span class="sourceLineNo">083</span>      setTextField(110, 275, "");<a name="line.83"></a>
+<span class="sourceLineNo">084</span>      setTextField(325, 200, "");<a name="line.84"></a>
+<span class="sourceLineNo">085</span>      setTextField(325, 225, "");<a name="line.85"></a>
+<span class="sourceLineNo">086</span>      setTextField(325, 250, "");<a name="line.86"></a>
+<span class="sourceLineNo">087</span>      setTextField(325, 275, "");<a name="line.87"></a>
+<span class="sourceLineNo">088</span>   //create the btnLoadStations button needed to load airports<a name="line.88"></a>
+<span class="sourceLineNo">089</span>      btnLoadStations = new JButton("Load Stations") ;<a name="line.89"></a>
+<span class="sourceLineNo">090</span>      btnLoadStations.setSize(150, 30) ; // width, height<a name="line.90"></a>
+<span class="sourceLineNo">091</span>      btnLoadStations.setLocation(25,300) ; //from left, from top<a name="line.91"></a>
+<span class="sourceLineNo">092</span>      panel.add(btnLoadStations); <a name="line.92"></a>
+<span class="sourceLineNo">093</span>      btnLoadStations.addActionListener(new btnLoadStationsListener()) ;<a name="line.93"></a>
+<span class="sourceLineNo">094</span>    //create the btnLoadWeather button needed to load the weather from file<a name="line.94"></a>
+<span class="sourceLineNo">095</span>      btnLoadWeather = new JButton("Load Weather") ;<a name="line.95"></a>
+<span class="sourceLineNo">096</span>      btnLoadWeather.setSize(150, 30) ; // width, height<a name="line.96"></a>
+<span class="sourceLineNo">097</span>      btnLoadWeather.setLocation(200,300) ; //from left, from top<a name="line.97"></a>
+<span class="sourceLineNo">098</span>      panel.add(btnLoadWeather); <a name="line.98"></a>
+<span class="sourceLineNo">099</span>      btnLoadWeather.addActionListener(new btnLoadWeatherListener()) ;<a name="line.99"></a>
+<span class="sourceLineNo">100</span>     <a name="line.100"></a>
+<span class="sourceLineNo">101</span>   //set initial combo boxes on the panel and add a listener for them  <a name="line.101"></a>
+<span class="sourceLineNo">102</span>      String emptyArray[]={"Select Airport"} ;  //put only one item in the box for now<a name="line.102"></a>
+<span class="sourceLineNo">103</span>      cboApt = new JComboBox(emptyArray) ;      //create a combobox<a name="line.103"></a>
+<span class="sourceLineNo">104</span>      cboApt.setSize(250, 20) ;                 //width, height<a name="line.104"></a>
+<span class="sourceLineNo">105</span>      cboApt.setLocation(25, 125);              //from left, from top<a name="line.105"></a>
+<span class="sourceLineNo">106</span>      cboApt.setForeground(Color.blue) ;        //set the font color<a name="line.106"></a>
+<span class="sourceLineNo">107</span>      panel.add(cboApt) ;<a name="line.107"></a>
+<span class="sourceLineNo">108</span>      cboApt.addActionListener(new MyComboBoxListenerClass()) ;   //link the combobox to an actionlistenter<a name="line.108"></a>
+<span class="sourceLineNo">109</span>   //set initial combo boxes on the panel and add a listener for them <a name="line.109"></a>
+<span class="sourceLineNo">110</span>      String blankArray[] = {"Select Altitude"} ;//put only one item in the box for now<a name="line.110"></a>
+<span class="sourceLineNo">111</span>      cboAlt = new JComboBox(blankArray) ;       //create a combobox<a name="line.111"></a>
+<span class="sourceLineNo">112</span>      cboAlt.setSize(250, 20) ;                  //width, height<a name="line.112"></a>
+<span class="sourceLineNo">113</span>      cboAlt.setLocation(25, 175);               //from left, from top<a name="line.113"></a>
+<span class="sourceLineNo">114</span>      cboAlt.setForeground(Color.blue) ;         //set the font color<a name="line.114"></a>
+<span class="sourceLineNo">115</span>      panel.add(cboAlt) ;<a name="line.115"></a>
+<span class="sourceLineNo">116</span>      cboAlt.addActionListener(new MyComboBoxListenerClass()) ;   //link the combobox to an actionlistenter<a name="line.116"></a>
+<span class="sourceLineNo">117</span>   //Set status label on panel using the setLabel() function<a name="line.117"></a>
+<span class="sourceLineNo">118</span>      txtAptStatus = setLabel(25, 350,"Airport Status") ;<a name="line.118"></a>
+<span class="sourceLineNo">119</span>      setTextFieldlarge(25, 375, "");<a name="line.119"></a>
+<span class="sourceLineNo">120</span>   //load the altitudes and airports on the form<a name="line.120"></a>
+<span class="sourceLineNo">121</span>      loadAltitudes() ;<a name="line.121"></a>
+<span class="sourceLineNo">122</span>      loadAirports() ;<a name="line.122"></a>
+<span class="sourceLineNo">123</span>   //set the form visible at last<a name="line.123"></a>
+<span class="sourceLineNo">124</span>      setVisible(true);<a name="line.124"></a>
+<span class="sourceLineNo">125</span>   }<a name="line.125"></a>
+<span class="sourceLineNo">126</span> //Section 783 , Combo boxes and actoin listeners <a name="line.126"></a>
+<span class="sourceLineNo">127</span><a name="line.127"></a>
+<span class="sourceLineNo">128</span>/**<a name="line.128"></a>
+<span class="sourceLineNo">129</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.129"></a>
+<span class="sourceLineNo">130</span>@version 1.01 11/18/2013<a name="line.130"></a>
+<span class="sourceLineNo">131</span>@assignment.number GUI w/Airport Status - A190-12<a name="line.131"></a>
+<span class="sourceLineNo">132</span>@prgm.usage Called from the operating system<a name="line.132"></a>
+<span class="sourceLineNo">133</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.133"></a>
+<span class="sourceLineNo">134</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.134"></a>
+<span class="sourceLineNo">135</span>*/  <a name="line.135"></a>
+<span class="sourceLineNo">136</span>   private class MyComboBoxListenerClass implements ActionListener<a name="line.136"></a>
+<span class="sourceLineNo">137</span>   {<a name="line.137"></a>
+<span class="sourceLineNo">138</span>   /**<a name="line.138"></a>
+<span class="sourceLineNo">139</span>   This function is the required function for an action listener. It is used<a name="line.139"></a>
+<span class="sourceLineNo">140</span>   to call the updateTextBoxes function whenever a both Comboboxes on the form are<a name="line.140"></a>
+<span class="sourceLineNo">141</span>   selected to be an index other than the 0 index<a name="line.141"></a>
+<span class="sourceLineNo">142</span>   <a name="line.142"></a>
+<span class="sourceLineNo">143</span>   @param event an ActionPerformed type that happenes everytime the actionlistener is notified<a name="line.143"></a>
+<span class="sourceLineNo">144</span>   */ <a name="line.144"></a>
+<span class="sourceLineNo">145</span>      public void actionPerformed(ActionEvent event)<a name="line.145"></a>
+<span class="sourceLineNo">146</span>      {  <a name="line.146"></a>
+<span class="sourceLineNo">147</span>         String strVar ;         //make a temporary string variable for this function's call<a name="line.147"></a>
+<span class="sourceLineNo">148</span>         String strAirport ;     //make a string to hold the stationName field for an airport<a name="line.148"></a>
+<span class="sourceLineNo">149</span>         String strAltitude ;    //make a string to hold the altitude of an airport<a name="line.149"></a>
+<span class="sourceLineNo">150</span>         //get whatever is selected from the comboboxes and store the items as strings<a name="line.150"></a>
+<span class="sourceLineNo">151</span>         strAirport = (String)cboApt.getSelectedItem();     //Gaddis,777<a name="line.151"></a>
+<span class="sourceLineNo">152</span>         strAltitude = (String)cboAlt.getSelectedItem() ;   //set the strAltitude variable to whatever<a name="line.152"></a>
+<span class="sourceLineNo">153</span>         //only when both an aiport and altitude are seleced, update the text boxes                                                   <a name="line.153"></a>
+<span class="sourceLineNo">154</span>         if ((cboApt.getSelectedIndex() != 0) &amp; (cboAlt.getSelectedIndex() != 0 ))                                                 <a name="line.154"></a>
+<span class="sourceLineNo">155</span>            updateTextBoxes(strAirport, strAltitude);          //call the updatTextBoxes function to deal<a name="line.155"></a>
+<span class="sourceLineNo">156</span>                                                               //with the event                                   <a name="line.156"></a>
+<span class="sourceLineNo">157</span>      }<a name="line.157"></a>
+<span class="sourceLineNo">158</span>   }<a name="line.158"></a>
+<span class="sourceLineNo">159</span>/**<a name="line.159"></a>
+<span class="sourceLineNo">160</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.160"></a>
+<span class="sourceLineNo">161</span>@version 1.01 11/18/2013<a name="line.161"></a>
+<span class="sourceLineNo">162</span>@assignment.number GUI w/Airport Status - A190-12<a name="line.162"></a>
+<span class="sourceLineNo">163</span>@prgm.usage Called from the operating system<a name="line.163"></a>
+<span class="sourceLineNo">164</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.164"></a>
+<span class="sourceLineNo">165</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.165"></a>
+<span class="sourceLineNo">166</span>*/  <a name="line.166"></a>
+<span class="sourceLineNo">167</span>   private class btnLoadStationsListener implements ActionListener<a name="line.167"></a>
+<span class="sourceLineNo">168</span>   {<a name="line.168"></a>
+<span class="sourceLineNo">169</span>      /**<a name="line.169"></a>
+<span class="sourceLineNo">170</span>      This function is the required function for an action listener. It is used<a name="line.170"></a>
+<span class="sourceLineNo">171</span>      to call the btnLoadStations() function whenever the Load Stations button is pressed<a name="line.171"></a>
+<span class="sourceLineNo">172</span>   <a name="line.172"></a>
+<span class="sourceLineNo">173</span>      @param event an ActionPerformed type that happenes everytime the actionlistener is notified<a name="line.173"></a>
+<span class="sourceLineNo">174</span>      */ <a name="line.174"></a>
+<span class="sourceLineNo">175</span>      public void actionPerformed(ActionEvent event)<a name="line.175"></a>
+<span class="sourceLineNo">176</span>      {<a name="line.176"></a>
+<span class="sourceLineNo">177</span>         btnLoadStations();<a name="line.177"></a>
+<span class="sourceLineNo">178</span>      }<a name="line.178"></a>
+<span class="sourceLineNo">179</span>   }<a name="line.179"></a>
+<span class="sourceLineNo">180</span>   /**<a name="line.180"></a>
+<span class="sourceLineNo">181</span>   @author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.181"></a>
+<span class="sourceLineNo">182</span>   @version 1.01 11/18/2013<a name="line.182"></a>
+<span class="sourceLineNo">183</span>   @assignment.number GUI w/Airport Status - A190-12<a name="line.183"></a>
+<span class="sourceLineNo">184</span>   @prgm.usage Called from the operating system<a name="line.184"></a>
+<span class="sourceLineNo">185</span>   @see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.185"></a>
+<span class="sourceLineNo">186</span>   @see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.186"></a>
+<span class="sourceLineNo">187</span>   */  <a name="line.187"></a>
+<span class="sourceLineNo">188</span>   private class btnLoadWeatherListener implements ActionListener<a name="line.188"></a>
+<span class="sourceLineNo">189</span>   {<a name="line.189"></a>
+<span class="sourceLineNo">190</span>      /**<a name="line.190"></a>
+<span class="sourceLineNo">191</span>      This function is the required function for an action listener. It is used<a name="line.191"></a>
+<span class="sourceLineNo">192</span>      to call the btnLoadWeather() function whenever the Load Weather button is pressed<a name="line.192"></a>
+<span class="sourceLineNo">193</span>   <a name="line.193"></a>
+<span class="sourceLineNo">194</span>      @param event an ActionPerformed type that happenes everytime the actionlistener is notified<a name="line.194"></a>
+<span class="sourceLineNo">195</span>      */ <a name="line.195"></a>
+<span class="sourceLineNo">196</span>      public void actionPerformed(ActionEvent event)<a name="line.196"></a>
+<span class="sourceLineNo">197</span>      {<a name="line.197"></a>
+<span class="sourceLineNo">198</span>         btnLoadWeather();<a name="line.198"></a>
+<span class="sourceLineNo">199</span>      }<a name="line.199"></a>
+<span class="sourceLineNo">200</span>   }<a name="line.200"></a>
+<span class="sourceLineNo">201</span>   /**<a name="line.201"></a>
+<span class="sourceLineNo">202</span>   This function is loads the cboApt ComboBox with the airport names from the stations table in the<a name="line.202"></a>
+<span class="sourceLineNo">203</span>   Weather.mdb database. It creates an Inet object to download the stations.txt file form the <a name="line.203"></a>
+<span class="sourceLineNo">204</span>   faculty.sdmirimar.edu website and then creates a DBUpdt object to store the txt file in the database.<a name="line.204"></a>
+<span class="sourceLineNo">205</span>   Finally, the stationName field is extracted for every field in the database and inputed into the<a name="line.205"></a>
+<span class="sourceLineNo">206</span>   cboApt Combobox<a name="line.206"></a>
+<span class="sourceLineNo">207</span>   <a name="line.207"></a>
+<span class="sourceLineNo">208</span>   @param none<a name="line.208"></a>
+<span class="sourceLineNo">209</span>   */      <a name="line.209"></a>
+<span class="sourceLineNo">210</span>   public void btnLoadStations()<a name="line.210"></a>
+<span class="sourceLineNo">211</span>   {    <a name="line.211"></a>
+<span class="sourceLineNo">212</span>      //create a string to hold the URL of the airport file, stations.txt<a name="line.212"></a>
+<span class="sourceLineNo">213</span>      String URL = "http://faculty.sdmiramar.edu/jcouture/2013fl/cisc190/webct/manual/stations.txt";<a name="line.213"></a>
+<span class="sourceLineNo">214</span>      //create a string to hold the name of the file<a name="line.214"></a>
+<span class="sourceLineNo">215</span>      String myFile = "stations.txt" ;<a name="line.215"></a>
+<span class="sourceLineNo">216</span>      //create a temporary string to hold the contents of the page on the URL<a name="line.216"></a>
+<span class="sourceLineNo">217</span>      String strVar ;<a name="line.217"></a>
+<span class="sourceLineNo">218</span>      //create an Inet object to put the stations.txt file contents into a string<a name="line.218"></a>
+<span class="sourceLineNo">219</span>      Inet loadNet = new Inet() ;<a name="line.219"></a>
+<span class="sourceLineNo">220</span>      strVar = loadNet.getFromFile(myFile) ;<a name="line.220"></a>
+<span class="sourceLineNo">221</span>      //if the file is empty, go online and get page to create the file<a name="line.221"></a>
+<span class="sourceLineNo">222</span>      if (strVar.compareTo("")==0 )<a name="line.222"></a>
+<span class="sourceLineNo">223</span>      {<a name="line.223"></a>
+<span class="sourceLineNo">224</span>         //get the weather page<a name="line.224"></a>
+<span class="sourceLineNo">225</span>         strVar = loadNet.getURLRaw(URL) ;<a name="line.225"></a>
+<span class="sourceLineNo">226</span>         //create the file<a name="line.226"></a>
+<span class="sourceLineNo">227</span>         loadNet.saveToFile(myFile, strVar) ;<a name="line.227"></a>
+<span class="sourceLineNo">228</span>      }<a name="line.228"></a>
+<span class="sourceLineNo">229</span>      else //otherwise tell the user that there is already a stations.txt file<a name="line.229"></a>
+<span class="sourceLineNo">230</span>      {<a name="line.230"></a>
+<span class="sourceLineNo">231</span>         System.out.println("File Already On Disk") ;<a name="line.231"></a>
+<span class="sourceLineNo">232</span>      } <a name="line.232"></a>
+<span class="sourceLineNo">233</span>    //create a file that that reads the stations.txt file<a name="line.233"></a>
+<span class="sourceLineNo">234</span>      File readFile = new File(myFile) ;<a name="line.234"></a>
+<span class="sourceLineNo">235</span>        <a name="line.235"></a>
+<span class="sourceLineNo">236</span>      DBUpdt db = new DBUpdt() ;          //create a DBUpdt object called db<a name="line.236"></a>
+<span class="sourceLineNo">237</span>      db.openConnection("Weather") ;      // name of connection, not of file<a name="line.237"></a>
+<span class="sourceLineNo">238</span>      db.deleteAll("stations") ;          //wipe the rows of the stations table clean everytime<a name="line.238"></a>
+<span class="sourceLineNo">239</span>         <a name="line.239"></a>
+<span class="sourceLineNo">240</span>   //Check to see if the stations.txt file already exists, if it does continue<a name="line.240"></a>
+<span class="sourceLineNo">241</span>      if (readFile.exists())<a name="line.241"></a>
+<span class="sourceLineNo">242</span>      {<a name="line.242"></a>
+<span class="sourceLineNo">243</span>      //if the file exists do, the following reading of the txt file<a name="line.243"></a>
+<span class="sourceLineNo">244</span>         try<a name="line.244"></a>
+<span class="sourceLineNo">245</span>         {<a name="line.245"></a>
+<span class="sourceLineNo">246</span>            Scanner inputFile = new Scanner(readFile) ;     //create a scanner object to read the file<a name="line.246"></a>
+<span class="sourceLineNo">247</span>            StringBuilder stations = new StringBuilder(""); //create a stringBuilder object to store tokens in<a name="line.247"></a>
+<span class="sourceLineNo">248</span>            inputFile.nextLine();                           //get rid of headers in faculty stations.txt file<a name="line.248"></a>
+<span class="sourceLineNo">249</span>            while (inputFile.hasNext())                     //read every line of the World.txt file<a name="line.249"></a>
+<span class="sourceLineNo">250</span>            {  //Create a string object to hold lines of the stations.txt file<a name="line.250"></a>
+<span class="sourceLineNo">251</span>               String line = inputFile.nextLine();    <a name="line.251"></a>
+<span class="sourceLineNo">252</span>            //Tokenize the line from the stations.txt file      <a name="line.252"></a>
+<span class="sourceLineNo">253</span>               String[] tokens = line.split(",",3); // the tokens are separated by comas<a name="line.253"></a>
+<span class="sourceLineNo">254</span>               //add the stationID, stationName, and state from the statoins.txt file to the database<a name="line.254"></a>
+<span class="sourceLineNo">255</span>               //in their respective fields.        <a name="line.255"></a>
+<span class="sourceLineNo">256</span>               db.addRecord("stations" , "stationID", tokens[0]) ;<a name="line.256"></a>
+<span class="sourceLineNo">257</span>               db.setField("stations", "stationID" , tokens[0], "stationName", loadNet.properCase(tokens[1])) ;<a name="line.257"></a>
+<span class="sourceLineNo">258</span>               db.setField("stations", "stationID" , tokens[0], "state", tokens[2]) ;   <a name="line.258"></a>
+<span class="sourceLineNo">259</span>            }<a name="line.259"></a>
+<span class="sourceLineNo">260</span>         }<a name="line.260"></a>
+<span class="sourceLineNo">261</span>         catch (Exception e)//this catch will handle any exceptions that are generated from making objects<a name="line.261"></a>
+<span class="sourceLineNo">262</span>         {<a name="line.262"></a>
+<span class="sourceLineNo">263</span>            System.out.println(e.getMessage()) ;//displa the exception to the user<a name="line.263"></a>
+<span class="sourceLineNo">264</span>         }<a name="line.264"></a>
+<span class="sourceLineNo">265</span>      } <a name="line.265"></a>
+<span class="sourceLineNo">266</span>      db.close() ;            //close the database so that others can use it<a name="line.266"></a>
+<span class="sourceLineNo">267</span>      loadAirports() ;        //call loadAirports to put the stationName field records into the ComboBox, cboApt. <a name="line.267"></a>
+<span class="sourceLineNo">268</span>      System.out.println("uploaded stations") ;//tell the user the stations have been uploaded<a name="line.268"></a>
+<span class="sourceLineNo">269</span>   }<a name="line.269"></a>
+<span class="sourceLineNo">270</span>   /**<a name="line.270"></a>
+<span class="sourceLineNo">271</span>   This function is loads the winds aloft weather from the NWS website into a text tile using the Inet class.<a name="line.271"></a>
+<span class="sourceLineNo">272</span>   The text file then is read using the Inet class, and the station weather for each station is read from the file<a name="line.272"></a>
+<span class="sourceLineNo">273</span>   and put into the Weather.mdb database using the DBUpdt class.<a name="line.273"></a>
+<span class="sourceLineNo">274</span>   <a name="line.274"></a>
+<span class="sourceLineNo">275</span>   @param none<a name="line.275"></a>
+<span class="sourceLineNo">276</span>   */   <a name="line.276"></a>
+<span class="sourceLineNo">277</span>   public void btnLoadWeather()<a name="line.277"></a>
+<span class="sourceLineNo">278</span>   {<a name="line.278"></a>
+<span class="sourceLineNo">279</span>      //Create a icaocode String to be used as a default if no other icaoCodes are found<a name="line.279"></a>
+<span class="sourceLineNo">280</span>      String icaoCode = "KSAN" ; //default, but will be changed<a name="line.280"></a>
+<span class="sourceLineNo">281</span>      //Create a string to hold the name of the winds aloft data file<a name="line.281"></a>
+<span class="sourceLineNo">282</span>      String inputFile = "weather.txt" ;<a name="line.282"></a>
+<span class="sourceLineNo">283</span>      //Create a string to hold the winds aloft URL<a name="line.283"></a>
+<span class="sourceLineNo">284</span>      String windWeatherURL = "http://www.aviationweather.gov/products/nws/all" ;<a name="line.284"></a>
+<span class="sourceLineNo">285</span>      try<a name="line.285"></a>
+<span class="sourceLineNo">286</span>      {  //create a file to be read<a name="line.286"></a>
+<span class="sourceLineNo">287</span>         File myFile = new File(inputFile) ; //pg 246<a name="line.287"></a>
+<span class="sourceLineNo">288</span>         Scanner inFile = new Scanner(myFile);<a name="line.288"></a>
+<span class="sourceLineNo">289</span>         //create a DBUpdt object to connect to the database<a name="line.289"></a>
+<span class="sourceLineNo">290</span>         DBUpdt weatherLoad = new DBUpdt() ;          //create a DBUpdt object called weatherLoad<a name="line.290"></a>
+<span class="sourceLineNo">291</span>         weatherLoad.openConnection("Weather") ;      // name of connection, not of file  <a name="line.291"></a>
+<span class="sourceLineNo">292</span>         <a name="line.292"></a>
+<span class="sourceLineNo">293</span>         while( inFile.hasNext() )                              //read the file line by line until the end<a name="line.293"></a>
+<span class="sourceLineNo">294</span>         {<a name="line.294"></a>
+<span class="sourceLineNo">295</span>            String line = inFile.nextLine() ;//store the next line of the file in a string variable<a name="line.295"></a>
+<span class="sourceLineNo">296</span>                //only lines of greater than 65 characters are airport weather lines<a name="line.296"></a>
+<span class="sourceLineNo">297</span>            if ( (line.length() &gt; 65) &amp;&amp; (line.substring(2,3).compareTo(" ") != 0) ) //if the next line of the file is an airport weather line<a name="line.297"></a>
+<span class="sourceLineNo">298</span>            {<a name="line.298"></a>
+<span class="sourceLineNo">299</span>               //use the DBUpdt object to put each line of weather from the weather.txt file into the database for each airport<a name="line.299"></a>
+<span class="sourceLineNo">300</span>               weatherLoad.setField("stations", "stationID" , "K"+line.substring(0,3), "windsaloft", line) ;<a name="line.300"></a>
+<span class="sourceLineNo">301</span>            }                                                                                   <a name="line.301"></a>
+<span class="sourceLineNo">302</span>         }<a name="line.302"></a>
+<span class="sourceLineNo">303</span>         weatherLoad.close() ;// close the database so others can use it<a name="line.303"></a>
+<span class="sourceLineNo">304</span>         System.out.println("uploaded weathers") ;      //tell the user that the weather was updated<a name="line.304"></a>
+<span class="sourceLineNo">305</span>      }<a name="line.305"></a>
+<span class="sourceLineNo">306</span>      catch (FileNotFoundException e)<a name="line.306"></a>
+<span class="sourceLineNo">307</span>      {<a name="line.307"></a>
+<span class="sourceLineNo">308</span>         //if the weather.txt file does not yet exist, go online and download the data to create the file<a name="line.308"></a>
+<span class="sourceLineNo">309</span>         //using the Inet class method: getPreData<a name="line.309"></a>
+<span class="sourceLineNo">310</span>         //Display the exception to the user<a name="line.310"></a>
+<span class="sourceLineNo">311</span>         System.out.println(e.getMessage()) ;<a name="line.311"></a>
+<span class="sourceLineNo">312</span>         //Tell the user that the weather.txt file doesn't yet exist<a name="line.312"></a>
+<span class="sourceLineNo">313</span>         System.out.println("The file " + inputFile + " does not yet exist" ) ;<a name="line.313"></a>
+<span class="sourceLineNo">314</span>         //Tell the user that the winds aloft data will be downloaded<a name="line.314"></a>
+<span class="sourceLineNo">315</span>         System.out.println("Downloading NCEP Winds Aloft Forecasts from the internet" );<a name="line.315"></a>
+<span class="sourceLineNo">316</span>         //Create an Inet object to store webpage data in a string<a name="line.316"></a>
+<span class="sourceLineNo">317</span>         Inet net = new Inet() ;<a name="line.317"></a>
+<span class="sourceLineNo">318</span>         String rawWebPage ;<a name="line.318"></a>
+<span class="sourceLineNo">319</span>         rawWebPage = net.getURLRaw(windWeatherURL) ;<a name="line.319"></a>
+<span class="sourceLineNo">320</span>         //create a string to put the preData in <a name="line.320"></a>
+<span class="sourceLineNo">321</span>         String preData ;<a name="line.321"></a>
+<span class="sourceLineNo">322</span>         preData = net.getPREData(rawWebPage);<a name="line.322"></a>
+<span class="sourceLineNo">323</span>         //save the preData to a file called weather.txt<a name="line.323"></a>
+<span class="sourceLineNo">324</span>         net.saveToFile(inputFile, preData) ;<a name="line.324"></a>
+<span class="sourceLineNo">325</span>         //tell the user the save is complete<a name="line.325"></a>
+<span class="sourceLineNo">326</span>         System.out.println("Saved winds aloft to file");<a name="line.326"></a>
+<span class="sourceLineNo">327</span>      } <a name="line.327"></a>
+<span class="sourceLineNo">328</span>      <a name="line.328"></a>
+<span class="sourceLineNo">329</span>   }     <a name="line.329"></a>
+<span class="sourceLineNo">330</span><a name="line.330"></a>
+<span class="sourceLineNo">331</span>   /**<a name="line.331"></a>
+<span class="sourceLineNo">332</span>   This function loads the 9 altitudes into the altidude combobox on the form.<a name="line.332"></a>
+<span class="sourceLineNo">333</span>   <a name="line.333"></a>
+<span class="sourceLineNo">334</span>   */ <a name="line.334"></a>
+<span class="sourceLineNo">335</span>   public void loadAltitudes()<a name="line.335"></a>
+<span class="sourceLineNo">336</span>   {<a name="line.336"></a>
+<span class="sourceLineNo">337</span>      String altArray[] = {"03", "06", "09",   //an array of strings representing the 9 altitudes<a name="line.337"></a>
+<span class="sourceLineNo">338</span>                          "12", "18", "24", <a name="line.338"></a>
+<span class="sourceLineNo">339</span>                          "30", "34", "39"} ;<a name="line.339"></a>
+<span class="sourceLineNo">340</span>      for (int i =0 ; i &lt; 9 ; i++ )<a name="line.340"></a>
+<span class="sourceLineNo">341</span>      {<a name="line.341"></a>
+<span class="sourceLineNo">342</span>         cboAlt.addItem(altArray[i]+"000" ) ;<a name="line.342"></a>
+<span class="sourceLineNo">343</span>      } <a name="line.343"></a>
+<span class="sourceLineNo">344</span>   }<a name="line.344"></a>
+<span class="sourceLineNo">345</span>        /**<a name="line.345"></a>
+<span class="sourceLineNo">346</span>   This function is loads the airports from the winds aloft webpage and puts them in the<a name="line.346"></a>
+<span class="sourceLineNo">347</span>   airport combobox on the form<a name="line.347"></a>
+<span class="sourceLineNo">348</span>   <a name="line.348"></a>
+<span class="sourceLineNo">349</span>   */ <a name="line.349"></a>
+<span class="sourceLineNo">350</span>   public void loadAirports()<a name="line.350"></a>
+<span class="sourceLineNo">351</span>   {<a name="line.351"></a>
+<span class="sourceLineNo">352</span>        //first, clear all previous items rom the airport combobox<a name="line.352"></a>
+<span class="sourceLineNo">353</span>      cboApt.removeAllItems() ;<a name="line.353"></a>
+<span class="sourceLineNo">354</span>      DBUpdt dbLoad = new DBUpdt() ;          //create a DBUpdt object called dbLoad<a name="line.354"></a>
+<span class="sourceLineNo">355</span>      dbLoad.openConnection("Weather") ;      // name of connection, not of file<a name="line.355"></a>
+<span class="sourceLineNo">356</span>      String strSQL ;                         //make a sting variable to hold SQL commands<a name="line.356"></a>
+<span class="sourceLineNo">357</span>      strSQL = "SELECT StationName FROM stations" ; //use the SELECT statement in order to get Field values from dbLoad<a name="line.357"></a>
+<span class="sourceLineNo">358</span>      dbLoad.query(strSQL) ;                  //create a query to create a result set<a name="line.358"></a>
+<span class="sourceLineNo">359</span>      cboApt.addItem("Select Airport") ;      //add the zero index to the airport combobox<a name="line.359"></a>
+<span class="sourceLineNo">360</span>      while (dbLoad.moreRecords())            //loop through each row in the result set<a name="line.360"></a>
+<span class="sourceLineNo">361</span>      {  //add the station name of each airport in the data base to the airport combobox<a name="line.361"></a>
+<span class="sourceLineNo">362</span>         cboApt.addItem(dbLoad.getField("StationName")) ;<a name="line.362"></a>
+<span class="sourceLineNo">363</span>      }  <a name="line.363"></a>
+<span class="sourceLineNo">364</span>      dbLoad.close() ;            //close the database so that others can use it<a name="line.364"></a>
+<span class="sourceLineNo">365</span>   }    <a name="line.365"></a>
+<span class="sourceLineNo">366</span>  /**<a name="line.366"></a>
+<span class="sourceLineNo">367</span>   This function is used by the constructor to create and position the airport status<a name="line.367"></a>
+<span class="sourceLineNo">368</span>   on th eframe. It must be large enough to hold a long status<a name="line.368"></a>
+<span class="sourceLineNo">369</span><a name="line.369"></a>
+<span class="sourceLineNo">370</span>   @param fmLeft an integer representing the number of pixels from the left of the frame<a name="line.370"></a>
+<span class="sourceLineNo">371</span>   @param fmTop an integer representing the number of pixels from the top of the frame<a name="line.371"></a>
+<span class="sourceLineNo">372</span>   @param strVar a string object representing the contents that will be placed in the text field<a name="line.372"></a>
+<span class="sourceLineNo">373</span>   @return TextField a JTextField object that will contain weather information<a name="line.373"></a>
+<span class="sourceLineNo">374</span>   */ <a name="line.374"></a>
+<span class="sourceLineNo">375</span>   public JTextField setTextFieldlarge(int fmLeft, int fmTop, String strVar)<a name="line.375"></a>
+<span class="sourceLineNo">376</span>   {<a name="line.376"></a>
+<span class="sourceLineNo">377</span>      JTextField TextField = new JTextField(strVar) ; //create the text Field<a name="line.377"></a>
+<span class="sourceLineNo">378</span>      TextField.setFont(new Font("Helvetica", Font.BOLD,12)) ; //set font<a name="line.378"></a>
+<span class="sourceLineNo">379</span>      TextField.setEditable(false) ;                  //not editable<a name="line.379"></a>
+<span class="sourceLineNo">380</span>      TextField.setText(strVar) ;                     //place text in the field<a name="line.380"></a>
+<span class="sourceLineNo">381</span>      TextField.setSize(450,20);                      // Length, Height<a name="line.381"></a>
+<span class="sourceLineNo">382</span>      TextField.setLocation(fmLeft,fmTop) ;           //from left, from top<a name="line.382"></a>
+<span class="sourceLineNo">383</span>      TextField.setForeground(Color.blue) ;           //Colors pg 77<a name="line.383"></a>
+<span class="sourceLineNo">384</span>      TextField.setBorder(BorderFactory.createLineBorder(Color.black,1)) ; //add border<a name="line.384"></a>
+<span class="sourceLineNo">385</span>      panel.add(TextField) ;                          //add the TextField to the panel   <a name="line.385"></a>
+<span class="sourceLineNo">386</span>      return TextField ;                              //also return a Text Field object<a name="line.386"></a>
+<span class="sourceLineNo">387</span>   }<a name="line.387"></a>
+<span class="sourceLineNo">388</span><a name="line.388"></a>
+<span class="sourceLineNo">389</span>   /**<a name="line.389"></a>
+<span class="sourceLineNo">390</span>   This function is used by the constructor to create and position the wind direction,<a name="line.390"></a>
+<span class="sourceLineNo">391</span>   speed, and temperature text fields on the frame<a name="line.391"></a>
+<span class="sourceLineNo">392</span><a name="line.392"></a>
+<span class="sourceLineNo">393</span>   @param fmLeft an integer representing the number of pixels from the left of the frame<a name="line.393"></a>
+<span class="sourceLineNo">394</span>   @param fmTop an integer representing the number of pixels from the top of the frame<a name="line.394"></a>
+<span class="sourceLineNo">395</span>   @param strVar a string object representing the contents that will be placed in the text field<a name="line.395"></a>
+<span class="sourceLineNo">396</span>   @return TextField a JTextField object that will contain weather information<a name="line.396"></a>
+<span class="sourceLineNo">397</span>   */ <a name="line.397"></a>
+<span class="sourceLineNo">398</span>   public JTextField setTextField(int fmLeft, int fmTop, String strVar)<a name="line.398"></a>
+<span class="sourceLineNo">399</span>   {<a name="line.399"></a>
+<span class="sourceLineNo">400</span>      JTextField TextField = new JTextField(strVar) ; //create the text Field<a name="line.400"></a>
+<span class="sourceLineNo">401</span>      TextField.setFont(new Font("Helvetica", Font.BOLD,12)) ; //set font<a name="line.401"></a>
+<span class="sourceLineNo">402</span>      TextField.setEditable(false) ;                  //not editable<a name="line.402"></a>
+<span class="sourceLineNo">403</span>      TextField.setText(strVar) ;                     //place text in the field<a name="line.403"></a>
+<span class="sourceLineNo">404</span>      TextField.setSize(100,20);                      // Length, Height<a name="line.404"></a>
+<span class="sourceLineNo">405</span>      TextField.setLocation(fmLeft,fmTop) ;           //from left, from top<a name="line.405"></a>
+<span class="sourceLineNo">406</span>      TextField.setForeground(Color.blue) ;           //Colors pg 77<a name="line.406"></a>
+<span class="sourceLineNo">407</span>      TextField.setBorder(BorderFactory.createLineBorder(Color.black,1)) ; //add border<a name="line.407"></a>
+<span class="sourceLineNo">408</span>      panel.add(TextField) ;                          //add the TextField to the panel   <a name="line.408"></a>
+<span class="sourceLineNo">409</span>      return TextField ;                              //also return a Text Field object<a name="line.409"></a>
+<span class="sourceLineNo">410</span>   <a name="line.410"></a>
+<span class="sourceLineNo">411</span>   }<a name="line.411"></a>
+<span class="sourceLineNo">412</span>   /**<a name="line.412"></a>
+<span class="sourceLineNo">413</span>   This function is used by the constructor to create and position all the various small<a name="line.413"></a>
+<span class="sourceLineNo">414</span>   labels on the frame<a name="line.414"></a>
+<span class="sourceLineNo">415</span><a name="line.415"></a>
+<span class="sourceLineNo">416</span>   @param fmLeft an integer representing the number of pixels from the left of the frame<a name="line.416"></a>
+<span class="sourceLineNo">417</span>   @param fmTop an integer representing the number of pixels from the top of the frame<a name="line.417"></a>
+<span class="sourceLineNo">418</span>   @param strVar a string object representing the contents that will be placed in the label<a name="line.418"></a>
+<span class="sourceLineNo">419</span>   @return label a JLabel object to label the components of the frame<a name="line.419"></a>
+<span class="sourceLineNo">420</span>   */ <a name="line.420"></a>
+<span class="sourceLineNo">421</span>   public JLabel setLabel(int fmLeft, int fmTop, String strVar)<a name="line.421"></a>
+<span class="sourceLineNo">422</span>   {  <a name="line.422"></a>
+<span class="sourceLineNo">423</span>      JLabel label = new JLabel(strVar) ;                   //create the label<a name="line.423"></a>
+<span class="sourceLineNo">424</span>      label.setFont(new Font("Helvetica", Font.BOLD,12)) ;  //set the font<a name="line.424"></a>
+<span class="sourceLineNo">425</span>      label.setSize(100,20);                                // Length, Height<a name="line.425"></a>
+<span class="sourceLineNo">426</span>      label.setLocation(fmLeft,fmTop) ;                     //from left, from top<a name="line.426"></a>
+<span class="sourceLineNo">427</span>      label.setForeground(Color.blue) ;                     //Colors pg 778<a name="line.427"></a>
+<span class="sourceLineNo">428</span>      if(strVar.length() &lt; 1 )<a name="line.428"></a>
+<span class="sourceLineNo">429</span>      {<a name="line.429"></a>
+<span class="sourceLineNo">430</span>      //BorderFactory pg 817<a name="line.430"></a>
+<span class="sourceLineNo">431</span>         label.setBorder(BorderFactory.createLineBorder(Color.black,1)) ;<a name="line.431"></a>
+<span class="sourceLineNo">432</span>      }<a name="line.432"></a>
+<span class="sourceLineNo">433</span>      panel.add(label) ;                                    //add the label to the panel<a name="line.433"></a>
+<span class="sourceLineNo">434</span>      return label ;                                        //also return a JLabel object    <a name="line.434"></a>
+<span class="sourceLineNo">435</span>   }<a name="line.435"></a>
+<span class="sourceLineNo">436</span>   //Section 770, display the text Boxes and their data<a name="line.436"></a>
+<span class="sourceLineNo">437</span><a name="line.437"></a>
+<span class="sourceLineNo">438</span>   /**<a name="line.438"></a>
+<span class="sourceLineNo">439</span>   This function is called whenever a combobox item is selected. It makes<a name="line.439"></a>
+<span class="sourceLineNo">440</span>   sure that two combobox items, station name and altitude, must be selected in<a name="line.440"></a>
+<span class="sourceLineNo">441</span>   order for the text fields to update with<a name="line.441"></a>
+<span class="sourceLineNo">442</span>   correct weather information<a name="line.442"></a>
+<span class="sourceLineNo">443</span>  <a name="line.443"></a>
+<span class="sourceLineNo">444</span>   @param strApt a string representing the name of the airport<a name="line.444"></a>
+<span class="sourceLineNo">445</span>   @param strAlt a character string representing the weather altitude in thousands of<a name="line.445"></a>
+<span class="sourceLineNo">446</span>                  feet.<a name="line.446"></a>
+<span class="sourceLineNo">447</span>   */ <a name="line.447"></a>
+<span class="sourceLineNo">448</span>   public void updateTextBoxes(String strApt, String strAlt)<a name="line.448"></a>
+<span class="sourceLineNo">449</span>   {  <a name="line.449"></a>
+<span class="sourceLineNo">450</span>      String aptStatus = "";   //a string used for storing the airport status<a name="line.450"></a>
+<span class="sourceLineNo">451</span>      String strKey = "" ;     //a string used for storing the icao code<a name="line.451"></a>
+<span class="sourceLineNo">452</span>      String strStationWeather = "";   //a string used for storing a line of weather<a name="line.452"></a>
+<span class="sourceLineNo">453</span>      String windDir;          //a string used for storing the wind direction<a name="line.453"></a>
+<span class="sourceLineNo">454</span>      String windSpeed;        //a string used for storing the wind speed<a name="line.454"></a>
+<span class="sourceLineNo">455</span>      String windTemp;         //a string used for storing the wind temperatur<a name="line.455"></a>
+<span class="sourceLineNo">456</span>      String latitude;         //a string used to store the latitude<a name="line.456"></a>
+<span class="sourceLineNo">457</span>      String longitude ;       //a string used to store the longitude<a name="line.457"></a>
+<span class="sourceLineNo">458</span>      String surfaceTemp ;     //a string used to store the surface Temperature<a name="line.458"></a>
+<span class="sourceLineNo">459</span>      String relativeHumidity ;//a string used to store the relative humidity<a name="line.459"></a>
+<span class="sourceLineNo">460</span>      //Make a connection to the database to get the stationID<a name="line.460"></a>
+<span class="sourceLineNo">461</span>      DBUpdt IDfind = new DBUpdt() ;          //create a DBUpdt object<a name="line.461"></a>
+<span class="sourceLineNo">462</span>      IDfind.openConnection("Weather") ;      // name of connection, not of file<a name="line.462"></a>
+<span class="sourceLineNo">463</span>      String IDcommand = "SELECT stationID FROM stations WHERE stationName = '" + strApt + "'" ;<a name="line.463"></a>
+<span class="sourceLineNo">464</span>      //execute the above SQL command<a name="line.464"></a>
+<span class="sourceLineNo">465</span>      IDfind.query(IDcommand) ;                  //create a query to create a result set <a name="line.465"></a>
+<span class="sourceLineNo">466</span>      //read the resultset to get the station ID for the selected airport in the ComboBox<a name="line.466"></a>
+<span class="sourceLineNo">467</span>      while(IDfind.moreRecords())<a name="line.467"></a>
+<span class="sourceLineNo">468</span>      {<a name="line.468"></a>
+<span class="sourceLineNo">469</span>         strKey = IDfind.getField("stationID");<a name="line.469"></a>
+<span class="sourceLineNo">470</span>         System.out.println(strKey);<a name="line.470"></a>
+<span class="sourceLineNo">471</span>      } <a name="line.471"></a>
+<span class="sourceLineNo">472</span>      IDfind.close() ;//close the database so that others can use it<a name="line.472"></a>
+<span class="sourceLineNo">473</span>      //make a connection to the database to get the weather for the airport selected in the combobox<a name="line.473"></a>
+<span class="sourceLineNo">474</span>      DBUpdt weatherFind =new DBUpdt() ;     //create a DBUpdt object<a name="line.474"></a>
+<span class="sourceLineNo">475</span>      weatherFind.openConnection("Weather") ;//name of connection, not of file<a name="line.475"></a>
+<span class="sourceLineNo">476</span>      String weatherCommand ="SELECT windsaloft FROM stations WHERE stationName = '" +strApt+ "'" ;<a name="line.476"></a>
+<span class="sourceLineNo">477</span>      //execute the above SQL statement<a name="line.477"></a>
+<span class="sourceLineNo">478</span>      weatherFind.query(weatherCommand) ;<a name="line.478"></a>
+<span class="sourceLineNo">479</span>      //read the resultset to get the station weather for the selected airport in the Combobox<a name="line.479"></a>
+<span class="sourceLineNo">480</span>      while(weatherFind.moreRecords())<a name="line.480"></a>
+<span class="sourceLineNo">481</span>      {  //weather is found in the windsaloft field<a name="line.481"></a>
+<span class="sourceLineNo">482</span>         strStationWeather = weatherFind.getField("windsaloft");<a name="line.482"></a>
+<span class="sourceLineNo">483</span>         System.out.println(strStationWeather);<a name="line.483"></a>
+<span class="sourceLineNo">484</span>      } <a name="line.484"></a>
+<span class="sourceLineNo">485</span>      weatherFind.close() ;   //clse the database so that others can use it<a name="line.485"></a>
+<span class="sourceLineNo">486</span>      try<a name="line.486"></a>
+<span class="sourceLineNo">487</span>      {<a name="line.487"></a>
+<span class="sourceLineNo">488</span>         NWSFB fb = new NWSFB(strStationWeather);  //use this NWSB object to get information for alt and airport combinations<a name="line.488"></a>
+<span class="sourceLineNo">489</span>         //update the wind direction, speed, and temp<a name="line.489"></a>
+<span class="sourceLineNo">490</span>         windDir = fb.getWindDirection(strAlt.substring(0,2));<a name="line.490"></a>
+<span class="sourceLineNo">491</span>         windSpeed = fb.getWindSpeed(strAlt.substring(0,2)) ;<a name="line.491"></a>
+<span class="sourceLineNo">492</span>         windTemp = fb.getWindTemp(strAlt.substring(0,2)) ;      <a name="line.492"></a>
+<span class="sourceLineNo">493</span>      //create an XMLRead object to read the NWS surface weather<a name="line.493"></a>
+<span class="sourceLineNo">494</span>         XMLRead myXMLReader = new XMLRead() ;<a name="line.494"></a>
+<span class="sourceLineNo">495</span>      //hand the XML object the icaoCode to put in it's URL<a name="line.495"></a>
+<span class="sourceLineNo">496</span>         String stationSurfaceWeather = "http://w1.weather.gov/xml/current_obs/" +strKey +".xml" ;<a name="line.496"></a>
+<span class="sourceLineNo">497</span>      //Load the page<a name="line.497"></a>
+<span class="sourceLineNo">498</span>         myXMLReader.loadPage(stationSurfaceWeather);<a name="line.498"></a>
+<span class="sourceLineNo">499</span>         myXMLReader.setTable("current_observation");<a name="line.499"></a>
+<span class="sourceLineNo">500</span>      //Get the latitude, longitude, surface temp, relative humidity, from the XML object<a name="line.500"></a>
+<span class="sourceLineNo">501</span>         latitude = myXMLReader.getField("latitude"); <a name="line.501"></a>
+<span class="sourceLineNo">502</span>         //if latitude is negative, it is in the South<a name="line.502"></a>
+<span class="sourceLineNo">503</span>         if (latitude.substring(0,1).compareTo("-")==0)<a name="line.503"></a>
+<span class="sourceLineNo">504</span>         {<a name="line.504"></a>
+<span class="sourceLineNo">505</span>            latitude=latitude.substring(1)+ " S" ;<a name="line.505"></a>
+<span class="sourceLineNo">506</span>         }<a name="line.506"></a>
+<span class="sourceLineNo">507</span>         //if latitude is positive, it is in the North<a name="line.507"></a>
+<span class="sourceLineNo">508</span>         else<a name="line.508"></a>
+<span class="sourceLineNo">509</span>         {<a name="line.509"></a>
+<span class="sourceLineNo">510</span>            latitude=latitude + " N" ;<a name="line.510"></a>
+<span class="sourceLineNo">511</span>         }<a name="line.511"></a>
+<span class="sourceLineNo">512</span>         longitude = myXMLReader.getField("longitude");<a name="line.512"></a>
+<span class="sourceLineNo">513</span>         //if longitude is negative, it is in the West,<a name="line.513"></a>
+<span class="sourceLineNo">514</span>         if(longitude.substring(0,1).compareTo("-")==0)<a name="line.514"></a>
+<span class="sourceLineNo">515</span>         {<a name="line.515"></a>
+<span class="sourceLineNo">516</span>            longitude=longitude.substring(1)+ " W" ;<a name="line.516"></a>
+<span class="sourceLineNo">517</span>         }<a name="line.517"></a>
+<span class="sourceLineNo">518</span>         //if longitude is positive, it is in the East,<a name="line.518"></a>
+<span class="sourceLineNo">519</span>         else<a name="line.519"></a>
+<span class="sourceLineNo">520</span>         {<a name="line.520"></a>
+<span class="sourceLineNo">521</span>            longitude=longitude + " E" ;<a name="line.521"></a>
+<span class="sourceLineNo">522</span>         }<a name="line.522"></a>
+<span class="sourceLineNo">523</span>         surfaceTemp = myXMLReader.getField("temp_c") + " C";<a name="line.523"></a>
+<span class="sourceLineNo">524</span>         relativeHumidity = myXMLReader.getField("relative_humidity")+" %";<a name="line.524"></a>
+<span class="sourceLineNo">525</span>         <a name="line.525"></a>
+<span class="sourceLineNo">526</span>         try{<a name="line.526"></a>
+<span class="sourceLineNo">527</span>         //create an XMLRead object to read airport status<a name="line.527"></a>
+<span class="sourceLineNo">528</span>            XMLRead secondXMLReader = new XMLRead() ;<a name="line.528"></a>
+<span class="sourceLineNo">529</span>         //hand the XML object the stationID to put in it's URL<a name="line.529"></a>
+<span class="sourceLineNo">530</span>            System.out.println(strKey.substring(1,4));<a name="line.530"></a>
+<span class="sourceLineNo">531</span>            String aptStatusURL = "http://services.faa.gov/airport/status/"+strKey.substring(1,4)+"?format=application/xml";<a name="line.531"></a>
+<span class="sourceLineNo">532</span>         //Load the page<a name="line.532"></a>
+<span class="sourceLineNo">533</span>            secondXMLReader.loadPage(aptStatusURL);<a name="line.533"></a>
+<span class="sourceLineNo">534</span>            secondXMLReader.setTable("Status");<a name="line.534"></a>
+<span class="sourceLineNo">535</span>            aptStatus = secondXMLReader.getField("Reason");<a name="line.535"></a>
+<span class="sourceLineNo">536</span>         }<a name="line.536"></a>
+<span class="sourceLineNo">537</span>         catch (Exception e) // in case there is no webpage on the internet, tell the user that no status is there.<a name="line.537"></a>
+<span class="sourceLineNo">538</span>         {<a name="line.538"></a>
+<span class="sourceLineNo">539</span>            System.out.println(e.getMessage()) ;<a name="line.539"></a>
+<span class="sourceLineNo">540</span>            aptStatus = "no status currently available" ;<a name="line.540"></a>
+<span class="sourceLineNo">541</span>         }<a name="line.541"></a>
+<span class="sourceLineNo">542</span>         //update all the text fields on the form<a name="line.542"></a>
+<span class="sourceLineNo">543</span>         setTextField(110, 200, windDir);<a name="line.543"></a>
+<span class="sourceLineNo">544</span>         setTextField(110, 225, windSpeed);<a name="line.544"></a>
+<span class="sourceLineNo">545</span>         setTextField(110, 250, windTemp);<a name="line.545"></a>
+<span class="sourceLineNo">546</span>         setTextField(110, 275, strKey);<a name="line.546"></a>
+<span class="sourceLineNo">547</span>         setTextField(325, 200, latitude);<a name="line.547"></a>
+<span class="sourceLineNo">548</span>         setTextField(325, 225, longitude);<a name="line.548"></a>
+<span class="sourceLineNo">549</span>         setTextField(325, 250, surfaceTemp);<a name="line.549"></a>
+<span class="sourceLineNo">550</span>         setTextField(325, 275, relativeHumidity);  <a name="line.550"></a>
+<span class="sourceLineNo">551</span>         setTextFieldlarge(25, 375, aptStatus);<a name="line.551"></a>
+<span class="sourceLineNo">552</span>      }<a name="line.552"></a>
+<span class="sourceLineNo">553</span>      catch (Exception e)<a name="line.553"></a>
+<span class="sourceLineNo">554</span>      {<a name="line.554"></a>
+<span class="sourceLineNo">555</span>         System.out.println(e.getMessage()) ;<a name="line.555"></a>
+<span class="sourceLineNo">556</span>         //if there is an exception to any objects created, tell the user<a name="line.556"></a>
+<span class="sourceLineNo">557</span>      }<a name="line.557"></a>
+<span class="sourceLineNo">558</span>   } <a name="line.558"></a>
+<span class="sourceLineNo">559</span>}<a name="line.559"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>
