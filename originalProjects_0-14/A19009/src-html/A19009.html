@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>import java.io.*;<a name="line.1"></a>
+<span class="sourceLineNo">002</span>import java.util.Scanner;<a name="line.2"></a>
+<span class="sourceLineNo">003</span>import java.util.StringTokenizer ;<a name="line.3"></a>
+<span class="sourceLineNo">004</span>import java.util.ArrayList ;<a name="line.4"></a>
+<span class="sourceLineNo">005</span><a name="line.5"></a>
+<span class="sourceLineNo">006</span>/**<a name="line.6"></a>
+<span class="sourceLineNo">007</span>@author Ramon Ortega (Email: &lt;a href="ramon.justis.ortega@gmail.com"&gt; ramon.justis.ortega@gmail.com&lt;/a&gt;)<a name="line.7"></a>
+<span class="sourceLineNo">008</span>@version 1.00 10/27/2013<a name="line.8"></a>
+<span class="sourceLineNo">009</span>@assignment.number RegEx and File Processing - A190-09<a name="line.9"></a>
+<span class="sourceLineNo">010</span>@prgm.usage Called from the operating system<a name="line.10"></a>
+<span class="sourceLineNo">011</span>@see "Gaddis, 2013, Starting out with Java, From Control Structures, 5th ed."<a name="line.11"></a>
+<span class="sourceLineNo">012</span>@see "&lt;a href='http://java.sun.com/javase/6/docs/technotes/guides/javadoc/index.html'&gt;JavaDoc Documentation&lt;/a&gt;"<a name="line.12"></a>
+<span class="sourceLineNo">013</span>*/<a name="line.13"></a>
+<span class="sourceLineNo">014</span>   public class A19009<a name="line.14"></a>
+<span class="sourceLineNo">015</span>   {<a name="line.15"></a>
+<span class="sourceLineNo">016</span>      public static void main (String[] args)throws IOException<a name="line.16"></a>
+<span class="sourceLineNo">017</span>      {<a name="line.17"></a>
+<span class="sourceLineNo">018</span>                        String firstFile = "World.txt" ;  //set the name of the text file we will output<a name="line.18"></a>
+<span class="sourceLineNo">019</span>                String secondFile = "OutsideUSA.txt" ;          <a name="line.19"></a>
+<span class="sourceLineNo">020</span>                        String strPage;                  //allocate a string for a raw page of data<a name="line.20"></a>
+<span class="sourceLineNo">021</span>      <a name="line.21"></a>
+<span class="sourceLineNo">022</span>        //This string is initialized to the URL address of the station location information<a name="line.22"></a>
+<span class="sourceLineNo">023</span>        String SLIURL = "http://weather.noaa.gov/data/nsd_bbsss.txt" ;<a name="line.23"></a>
+<span class="sourceLineNo">024</span>      <a name="line.24"></a>
+<span class="sourceLineNo">025</span>        Inet net = new Inet();           //instantiate an Inet object to perform file operations<a name="line.25"></a>
+<span class="sourceLineNo">026</span>                                        //and URL operations defined in the class.<a name="line.26"></a>
+<span class="sourceLineNo">027</span>    <a name="line.27"></a>
+<span class="sourceLineNo">028</span>        //if there is already a file, read that file, otherwise, create that file    <a name="line.28"></a>
+<span class="sourceLineNo">029</span>        if (net.getFromFile(firstFile).isEmpty()) //check to see if there is an existing file<a name="line.29"></a>
+<span class="sourceLineNo">030</span>        {<a name="line.30"></a>
+<span class="sourceLineNo">031</span>                strPage = net.getURLRaw(SLIURL) ;   //put the station location information in a string<a name="line.31"></a>
+<span class="sourceLineNo">032</span>                net.saveToFile(firstFile, strPage) ; //save the station locatoin info to a file <a name="line.32"></a>
+<span class="sourceLineNo">033</span>        }<a name="line.33"></a>
+<span class="sourceLineNo">034</span>        else //otherwise tell the user that there is already a file<a name="line.34"></a>
+<span class="sourceLineNo">035</span>        {<a name="line.35"></a>
+<span class="sourceLineNo">036</span>                System.out.println("File Already On Disk") ;<a name="line.36"></a>
+<span class="sourceLineNo">037</span>        }               <a name="line.37"></a>
+<span class="sourceLineNo">038</span>         <a name="line.38"></a>
+<span class="sourceLineNo">039</span>                        //create a file that that reads the World.txt file<a name="line.39"></a>
+<span class="sourceLineNo">040</span>        File readFile = new File(firstFile) ;<a name="line.40"></a>
+<span class="sourceLineNo">041</span>        //Check to see if the file already exists, if it does continue<a name="line.41"></a>
+<span class="sourceLineNo">042</span>        if (readFile.exists())<a name="line.42"></a>
+<span class="sourceLineNo">043</span>        {<a name="line.43"></a>
+<span class="sourceLineNo">044</span>            //if the file exists do, the following<a name="line.44"></a>
+<span class="sourceLineNo">045</span>                Scanner inputFile = new Scanner(readFile) ;     //create a scanner object to read the file<a name="line.45"></a>
+<span class="sourceLineNo">046</span>                                StringBuilder stations = new StringBuilder(""); //create a stringBuilder object to store tokens in<a name="line.46"></a>
+<span class="sourceLineNo">047</span>         <a name="line.47"></a>
+<span class="sourceLineNo">048</span>            while (inputFile.hasNext())                     //read every line of the World.txt file<a name="line.48"></a>
+<span class="sourceLineNo">049</span>            {  //Create a string object to hold lines of the World.txt file<a name="line.49"></a>
+<span class="sourceLineNo">050</span>               String line = inputFile.nextLine();    <a name="line.50"></a>
+<span class="sourceLineNo">051</span>               //Tokenize the line from the World.txt file      <a name="line.51"></a>
+<span class="sourceLineNo">052</span>               String[] tokens = line.split(";",14);<a name="line.52"></a>
+<span class="sourceLineNo">053</span>               //declare and initialize exception flags to false<a name="line.53"></a>
+<span class="sourceLineNo">054</span>                                        boolean ICAOcode = false ;                  <a name="line.54"></a>
+<span class="sourceLineNo">055</span>                                        boolean UScountry = false ;<a name="line.55"></a>
+<span class="sourceLineNo">056</span>                                        boolean outsideLat = false ;<a name="line.56"></a>
+<span class="sourceLineNo">057</span>                                        boolean outsideLong = false ;<a name="line.57"></a>
+<span class="sourceLineNo">058</span>                                        boolean overTen = false ;<a name="line.58"></a>
+<span class="sourceLineNo">059</span>               //set exception flags to true if airports meet certain crieria in the specification<a name="line.59"></a>
+<span class="sourceLineNo">060</span>                                        ICAOcode = (tokens[2].compareTo("----")!=0) ;            //extract only airports with an ICAO code<a name="line.60"></a>
+<span class="sourceLineNo">061</span>                                        UScountry = (tokens[5].compareTo("United States")== 0) ; //extract only airports that belong to the US<a name="line.61"></a>
+<span class="sourceLineNo">062</span>               //extract only airports outside the latitude of the continental united states<a name="line.62"></a>
+<span class="sourceLineNo">063</span>                                        outsideLat = (tokens[7].endsWith("S") || (Integer.parseInt(tokens[7].substring(0,2)) &gt; 49) ||(Integer.parseInt(tokens[7].substring(0,2)) &lt; 24) );<a name="line.63"></a>
+<span class="sourceLineNo">064</span>               try <a name="line.64"></a>
+<span class="sourceLineNo">065</span>               {<a name="line.65"></a>
+<span class="sourceLineNo">066</span>               //extract only airports outside the longetude of the continental united states<a name="line.66"></a>
+<span class="sourceLineNo">067</span>               outsideLong = (tokens[8].endsWith("E") || (Integer.parseInt(tokens[8].substring(0,3)) &gt; 124) || (Integer.parseInt(tokens[8].substring(0,3)) &lt;  67) );<a name="line.67"></a>
+<span class="sourceLineNo">068</span>               }<a name="line.68"></a>
+<span class="sourceLineNo">069</span>               catch (NumberFormatException e)<a name="line.69"></a>
+<span class="sourceLineNo">070</span>               {<a name="line.70"></a>
+<span class="sourceLineNo">071</span>               //handle the exception where there is only two digits of degrees of longitude, as opposed to three<a name="line.71"></a>
+<span class="sourceLineNo">072</span>               outsideLong = (tokens[8].endsWith("E") || (Integer.parseInt(tokens[8].substring(0,2)) &gt; 124) || (Integer.parseInt(tokens[8].substring(0,2)) &lt;  67) );<a name="line.72"></a>
+<span class="sourceLineNo">073</span>               }<a name="line.73"></a>
+<span class="sourceLineNo">074</span>               try<a name="line.74"></a>
+<span class="sourceLineNo">075</span>               {  //extract only airports that are above 10 meters (this excludes things like buies<a name="line.75"></a>
+<span class="sourceLineNo">076</span>                  overTen = Integer.parseInt(tokens[11]) &gt; 10 ;<a name="line.76"></a>
+<span class="sourceLineNo">077</span>                                        }<a name="line.77"></a>
+<span class="sourceLineNo">078</span>               catch (NumberFormatException e) <a name="line.78"></a>
+<span class="sourceLineNo">079</span>               {  //handle the exception where the altidude token is left blank<a name="line.79"></a>
+<span class="sourceLineNo">080</span>                  overTen = false ;<a name="line.80"></a>
+<span class="sourceLineNo">081</span>                                   }    <a name="line.81"></a>
+<span class="sourceLineNo">082</span>               <a name="line.82"></a>
+<span class="sourceLineNo">083</span>               //if a line of the World.txt file meets all the exceptions in the specification, then format and<a name="line.83"></a>
+<span class="sourceLineNo">084</span>               //append the tokens to the stations stringbuilder object<a name="line.84"></a>
+<span class="sourceLineNo">085</span>               if (ICAOcode &amp;&amp; UScountry &amp;&amp; outsideLat &amp;&amp; outsideLong &amp;&amp; overTen)<a name="line.85"></a>
+<span class="sourceLineNo">086</span>                                   {<a name="line.86"></a>
+<span class="sourceLineNo">087</span>                  stations.append(tokens[2] + " " + net.properCase(tokens[3]) + "\n") ;<a name="line.87"></a>
+<span class="sourceLineNo">088</span>                  stations.append("\t Latitude: " + tokens[7] + "\n");<a name="line.88"></a>
+<span class="sourceLineNo">089</span>                  stations.append("\t Longitude: " + tokens[8] + "\n") ;<a name="line.89"></a>
+<span class="sourceLineNo">090</span>                  stations.append("\t Elevation: " + tokens[11] + " meters\n") ;<a name="line.90"></a>
+<span class="sourceLineNo">091</span>                  stations.append("\t Block and Station Number: " + tokens[0] + "-" + tokens[1] + "\n") ;<a name="line.91"></a>
+<span class="sourceLineNo">092</span>                  stations.append("\n");<a name="line.92"></a>
+<span class="sourceLineNo">093</span>                                   }            <a name="line.93"></a>
+<span class="sourceLineNo">094</span>            }<a name="line.94"></a>
+<span class="sourceLineNo">095</span>            //call the Inet object saveToFile method to create the OutsideUSA.txt file<a name="line.95"></a>
+<span class="sourceLineNo">096</span>            net.saveToFile(secondFile, stations.toString()) ;<a name="line.96"></a>
+<span class="sourceLineNo">097</span>         }<a name="line.97"></a>
+<span class="sourceLineNo">098</span>                        else<a name="line.98"></a>
+<span class="sourceLineNo">099</span>                        {<a name="line.99"></a>
+<span class="sourceLineNo">100</span>                                System.out.println("File not found") ;<a name="line.100"></a>
+<span class="sourceLineNo">101</span>                        }<a name="line.101"></a>
+<span class="sourceLineNo">102</span>      System.out.println("Done") ; // tell the user we are done<a name="line.102"></a>
+<span class="sourceLineNo">103</span>      }<a name="line.103"></a>
+<span class="sourceLineNo">104</span>   }<a name="line.104"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>

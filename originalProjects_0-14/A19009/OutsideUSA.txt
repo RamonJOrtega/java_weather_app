@@ -1,0 +1,379 @@
+PABR Post Rogers Memorial Airport
+	 Latitude: 71-17N
+	 Longitude: 156-46W
+	 Elevation: 13 meters
+	 Block and Station Number: 70-026
+
+PATC Tin City Airways Facilities Sector
+	 Latitude: 65-34N
+	 Longitude: 167-55W
+	 Elevation: 83 meters
+	 Block and Station Number: 70-117
+
+PAUM Umiat
+	 Latitude: 69-22N
+	 Longitude: 152-08W
+	 Elevation: 81 meters
+	 Block and Station Number: 70-162
+
+PAFM Ambler, Ambler Airport
+	 Latitude: 67-06N
+	 Longitude: 157-51W
+	 Elevation: 88 meters
+	 Block and Station Number: 70-171
+
+PAIM Utopia Creek, Indian Mountain Lrrs Airport
+	 Latitude: 66-59N
+	 Longitude: 153-42W
+	 Elevation: 372 meters
+	 Block and Station Number: 70-173
+
+PABT Bettles Airport
+	 Latitude: 66-54N
+	 Longitude: 151-31W
+	 Elevation: 196 meters
+	 Block and Station Number: 70-174
+
+PATA Tanana Calhoun Memorial Airport 
+	 Latitude: 65-10N
+	 Longitude: 152-06W
+	 Elevation: 72 meters
+	 Block and Station Number: 70-178
+
+PFYU Fort Yukon, Fort Yukon Airport
+	 Latitude: 66-34N
+	 Longitude: 145-16W
+	 Elevation: 433 meters
+	 Block and Station Number: 70-194
+
+PAOM Nome Airport
+	 Latitude: 64-31N
+	 Longitude: 165-26W
+	 Elevation: 11 meters
+	 Block and Station Number: 70-200
+
+PACZ Cape Romanzof, Cape Romanzof Lrrs Airport
+	 Latitude: 61-47N
+	 Longitude: 166-02W
+	 Elevation: 139 meters
+	 Block and Station Number: 70-212
+
+PABE Bethel Airport
+	 Latitude: 60-47N
+	 Longitude: 161-50W
+	 Elevation: 37 meters
+	 Block and Station Number: 70-219
+
+PAGA Galena, Edward G. Pitka Sr. Airport
+	 Latitude: 64-44N
+	 Longitude: 156-56W
+	 Elevation: 46 meters
+	 Block and Station Number: 70-222
+
+PAMC Mcgrath Airport
+	 Latitude: 62-57N
+	 Longitude: 155-36W
+	 Elevation: 103 meters
+	 Block and Station Number: 70-231
+
+PANI Aniak, Aniak Airport
+	 Latitude: 61-34-53N
+	 Longitude: 159-32-34W
+	 Elevation: 27 meters
+	 Block and Station Number: 70-232
+
+PASV Sparrevohn Airways Facilities Sector
+	 Latitude: 61-06N
+	 Longitude: 155-34W
+	 Elevation: 484 meters
+	 Block and Station Number: 70-235
+
+PAMH Minchumina, Minchumina Airport
+	 Latitude: 63-52-50N
+	 Longitude: 152-18-02W
+	 Elevation: 208 meters
+	 Block and Station Number: 70-246
+
+PAPT Puntilla
+	 Latitude: 62-06N
+	 Longitude: 152-45W
+	 Elevation: 560 meters
+	 Block and Station Number: 70-249
+
+PATK Talkeetna Airport
+	 Latitude: 62-19N
+	 Longitude: 150-06W
+	 Elevation: 109 meters
+	 Block and Station Number: 70-251
+
+PASW Skwentna
+	 Latitude: 61-58-38N
+	 Longitude: 151-13-02W
+	 Elevation: 46 meters
+	 Block and Station Number: 70-255
+
+PAEN Kenai Municipal Airport
+	 Latitude: 60-35N
+	 Longitude: 151-14W
+	 Elevation: 28 meters
+	 Block and Station Number: 70-259
+
+PANN Nenana Municipal Airport
+	 Latitude: 64-33N
+	 Longitude: 149-04W
+	 Elevation: 110 meters
+	 Block and Station Number: 70-260
+
+PAFA Fairbanks, Fairbanks International Airport
+	 Latitude: 64-48-14N
+	 Longitude: 147-52-34W
+	 Elevation: 132 meters
+	 Block and Station Number: 70-261
+
+PAEI Fairbanks, Eielson Air Force Base
+	 Latitude: 64-39N
+	 Longitude: 147-06W
+	 Elevation: 167 meters
+	 Block and Station Number: 70-265
+
+PABI Allen Army Airfield
+	 Latitude: 64-00N
+	 Longitude: 145-43W
+	 Elevation: 389 meters
+	 Block and Station Number: 70-267
+
+PAFR Ft. Richardson / Bryant U. S. Army Heliport, Ak
+	 Latitude: 61-16N
+	 Longitude: 149-39W
+	 Elevation: 115 meters
+	 Block and Station Number: 70-270
+
+PAGK Gulkana Airport
+	 Latitude: 62-09N
+	 Longitude: 145-27W
+	 Elevation: 481 meters
+	 Block and Station Number: 70-271
+
+PAED Anchorage, Elmendorf Air Force Base
+	 Latitude: 61-15-11N
+	 Longitude: 149-47-38W
+	 Elevation: 65 meters
+	 Block and Station Number: 70-272
+
+PANC Ted Stevens Anchorage International 
+	 Latitude: 61-10N
+	 Longitude: 150-02W
+	 Elevation: 44 meters
+	 Block and Station Number: 70-273
+
+PAAQ Palmer Municipal Airport
+	 Latitude: 61-36N
+	 Longitude: 149-06W
+	 Elevation: 76 meters
+	 Block and Station Number: 70-274
+
+PAOR Northway Airport
+	 Latitude: 62-58N
+	 Longitude: 141-56N
+	 Elevation: 523 meters
+	 Block and Station Number: 70-291
+
+PACV Merle K. Smith Airport
+	 Latitude: 60-30N
+	 Longitude: 145-29W
+	 Elevation: 13 meters
+	 Block and Station Number: 70-296
+
+PAEH Cape Newenham, Cape Newenham Lrrs Airport
+	 Latitude: 58-39N
+	 Longitude: 162-04W
+	 Elevation: 165 meters
+	 Block and Station Number: 70-305
+
+PASN St Paul Island Airport
+	 Latitude: 57-10N
+	 Longitude: 170-13W
+	 Elevation: 19 meters
+	 Block and Station Number: 70-308
+
+PACD Cold Bay Airport
+	 Latitude: 55-13N
+	 Longitude: 162-44W
+	 Elevation: 30 meters
+	 Block and Station Number: 70-316
+
+PADL Dillingham, Dillingham Airport
+	 Latitude: 59-03N
+	 Longitude: 158-31W
+	 Elevation: 26 meters
+	 Block and Station Number: 70-321
+
+PAKN King Salmon Airport
+	 Latitude: 58-41N
+	 Longitude: 156-39W
+	 Elevation: 17 meters
+	 Block and Station Number: 70-326
+
+PAPH Port Heiden, Port Heiden Airport
+	 Latitude: 56-57N
+	 Longitude: 158-38W
+	 Elevation: 29 meters
+	 Block and Station Number: 70-333
+
+PAIL Iliamna Airport
+	 Latitude: 59-45N
+	 Longitude: 154-55W
+	 Elevation: 63 meters
+	 Block and Station Number: 70-340
+
+PAHD Homer / Municipal
+	 Latitude: 59-38N
+	 Longitude: 151-30W
+	 Elevation: 24 meters
+	 Block and Station Number: 70-341
+
+PAMD Middleton Island, Middleton Island Airport
+	 Latitude: 59-26N
+	 Longitude: 146-18W
+	 Elevation: 27 meters
+	 Block and Station Number: 70-343
+
+PADQ Kodiak Airport
+	 Latitude: 57-45N
+	 Longitude: 152-29W
+	 Elevation: 22 meters
+	 Block and Station Number: 70-350
+
+PACP Cape Saint Elias
+	 Latitude: 59-48N
+	 Longitude: 144-36W
+	 Elevation: 18 meters
+	 Block and Station Number: 70-360
+
+PAGY Skagway Airport
+	 Latitude: 59-28N
+	 Longitude: 135-19W
+	 Elevation: 13 meters
+	 Block and Station Number: 70-362
+
+PAQT Nuiqsut Airport
+	 Latitude: 70-13N
+	 Longitude: 150-59W
+	 Elevation: 12 meters
+	 Block and Station Number: 70-364
+
+PAWG Wrangell
+	 Latitude: 56-29N
+	 Longitude: 132-22W
+	 Elevation: 13 meters
+	 Block and Station Number: 70-387
+
+PAKW Klawock, Klawock Airport
+	 Latitude: 55-35N
+	 Longitude: 133-05W
+	 Elevation: 24 meters
+	 Block and Station Number: 70-389
+
+PAKT Ketchikan International Airport 
+	 Latitude: 55-21N
+	 Longitude: 131-43W
+	 Elevation: 27 meters
+	 Block and Station Number: 70-395
+
+PANT Annette Island Airport
+	 Latitude: 55-02N
+	 Longitude: 131-35W
+	 Elevation: 36 meters
+	 Block and Station Number: 70-398
+
+PASY Shemya Eareckson As
+	 Latitude: 52-43N
+	 Longitude: 174-07E
+	 Elevation: 30 meters
+	 Block and Station Number: 70-414
+
+PAKO Nikolski
+	 Latitude: 52-57N
+	 Longitude: 168-51W
+	 Elevation: 21 meters
+	 Block and Station Number: 70-482
+
+TJNR Roosevelt Roads Puerto Rico
+	 Latitude: 18-15N
+	 Longitude: 65-38W
+	 Elevation: 12 meters
+	 Block and Station Number: 78-535
+
+PHLI Lihue Airport
+	 Latitude: 21-59N
+	 Longitude: 159-20W
+	 Elevation: 45 meters
+	 Block and Station Number: 91-165
+
+PHHI Wheeler Air Force Base / Oahu
+	 Latitude: 21-29N
+	 Longitude: 158-02W
+	 Elevation: 255 meters
+	 Block and Station Number: 91-170
+
+PHMK Kaunakakai, Molokai Airport
+	 Latitude: 21-09N
+	 Longitude: 157-06W
+	 Elevation: 138 meters
+	 Block and Station Number: 91-186
+
+PHOG Kahului Airport
+	 Latitude: 20-54N
+	 Longitude: 156-26W
+	 Elevation: 16 meters
+	 Block and Station Number: 91-190
+
+PGUM Agana, Guam International Airport
+	 Latitude: 13-29N
+	 Longitude: 144-48E
+	 Elevation: 91 meters
+	 Block and Station Number: 91-212
+
+PGAC Guam, Mariana Island
+	 Latitude: 13-55N
+	 Longitude: 144-50E
+	 Elevation: 111 meters
+	 Block and Station Number: 91-217
+
+PGUA Andersen, Mariana Is, Andersen Air Force Base
+	 Latitude: 13-35N
+	 Longitude: 144-56E
+	 Elevation: 187 meters
+	 Block and Station Number: 91-218
+
+PGRO Rota Island, N. Mariana Is, Rota International Airport
+	 Latitude: 14-11N
+	 Longitude: 145-15E
+	 Elevation: 185 meters
+	 Block and Station Number: 91-221
+
+PGSN Saipan Island, Saipan International Airport
+	 Latitude: 15-07N
+	 Longitude: 145-44E
+	 Elevation: 66 meters
+	 Block and Station Number: 91-232
+
+PGWT Tinian Island, N. Mariana Is, West Tinian Airport
+	 Latitude: 14-59N
+	 Longitude: 145-37E
+	 Elevation: 82 meters
+	 Block and Station Number: 91-233
+
+PHTO Hilo International Airport
+	 Latitude: 19-43N
+	 Longitude: 155-03W
+	 Elevation: 12 meters
+	 Block and Station Number: 91-285
+
+PHWH South Kona / Hawaii
+	 Latitude: 19-06N
+	 Longitude: 155-45W
+	 Elevation: 808 meters
+	 Block and Station Number: 91-293
+
+
