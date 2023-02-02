@@ -1,5 +1,6 @@
 # java_weather_app
-This application was built in the JGrasp IDE as my final project in my Introduction to Java Programming Class.
+This application was built in the JGrasp IDE as my final project #15 in my Introduction to Java Programming Class.
+Note: .gitIgnore ignores projects #1-#14 which house other learning applications from the Java Programming Class.
 You will need to setup a Derby Database to run this code, but you may update the code with your choice of database (such as Railway).
 The application reads national weather service API from the web, stores it in the Derby Database, and returns flight conditions when queried by the user.
 Flight conditions include location, date, time, windspeed, direction, temperature, etc.
