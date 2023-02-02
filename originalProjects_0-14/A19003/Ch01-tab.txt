@@ -1,0 +1,40 @@
+MC	 All of the following are major hardware components of a typical computer system except ______.	Main Memory	Incorrect	CPU	Incorrect	Operating System	Incorrect	secondary storage	Incorrect
+MC	 You can think of  ____________ as the computer's work area.	the CPU	Incorrect	main memory	Incorrect	secondary storage	Incorrect	the desktop	Incorrect
+MC	 Application software refers to programs that ___________.	manage the computer's hardware devices	Incorrect	controls the computers input/output	Incorrect	performs diagnostic tests on secondary storage	Incorrect	make the computer useful to the user	Incorrect
+MC	 The purpose of an algorithm is to ____________.	analyze the nature of a problem	Incorrect	list a set of steps to solve a problem	Incorrect	understand what a programming language does	Incorrect	list the elements needed for the user interface	Incorrect
+MC	 The CPU processes instructions written only in this language.	Java	Incorrect	pseudo code	Incorrect	machine language	Incorrect	Visual Basic	Incorrect
+MC	 ____________ were invented to make the process of encoding an algorithm in machine language easier.	Programming languages	Incorrect	Variables	Incorrect	Output devices	Incorrect	Graphical user interfaces	Incorrect
+MC	 An object in Visual Basic ____________.	is also referred to as an event handler	Incorrect	is an attribute of a control	Incorrect	is an action performed by a method	Incorrect	contains data called properties	Incorrect
+MC	 A word that has a specific meaning in a programming language is called ______________.	a keyword	Incorrect	an operator	Incorrect	a variable	Incorrect	a comment	Incorrect
+MC	 Which of the following is NOT an example of an event in Visual Basic?	clicking a button	Incorrect	dragging a control to a form from the tool box	Incorrect	changing contents of a textbox	Incorrect	clicking a control	Incorrect
+MC	 When creating a Visual Basic desktop application, the last thing you will do is ____________.	correct runtime errors	Incorrect	create the forms	Incorrect	write code for even procedures	Incorrect	correct syntax errors	Incorrect
+MC	 Programs should use comments (remarks) to __________________.	help the human reader of the program	Incorrect	make a program run more efficiently	Incorrect	make the code run faster	Incorrect	make the program smaller in size	Incorrect
+MC	 Flowcharts are used to _________________________.	determine the controls required for a program	Incorrect	describe the programs input and output	Incorrect	graphically depict the flow of a method	Incorrect	check for syntax errors	Incorrect
+MC	 How would you display the Designer window if it is not visible in your project?	Press Shift+F9 on the keyboard	Incorrect	Click the Designer option on the VIEW menu	Incorrect	Press Ctrl+Alt+D on the keyboard	Incorrect	Click View Designer on the EDIT menu	Incorrect
+MC	 The Auto Hide feature ____________________.	enables the programmer to hide a control on a form	Incorrect	permanently removes the toolbox from the Visual Basic environment	Incorrect	hides the controls on a form until the programmer changes the status	Incorrect	causes a window to display as a tab along the edge of Visual Studio	Incorrect
+MC	 The standard toolbar ___________________________.	allows the programmer to place controls on the form	Incorrect	contains buttons that execute frequently used commands	Incorrect	is difficult to use, since you must remember the commands	Incorrect	allows the programmer to create user defined controls	Incorrect
+MC	 What is the purpose of the Toolbox?	To design user defined methods.	Incorrect	To select controls and place on an application's form	Incorrect	To select event procedures associated with a control	Incorrect	To select methods to be placed on the form	Incorrect
+MC	 How do you display a ToolTip?	single-click a button on the toolbar	Incorrect	double-click a button on the toolbar	Incorrect	hold the mouse pointer over a toolbar button for a few seconds	Incorrect	tab to the button on the toolbar so that it has the focus	Incorrect
+MC	 A variable  _________________.	performs various operations on data	Incorrect	is a set of programming statements to perform a specific task	Incorrect	is a storage location in memory represented by a name	Incorrect	is a key element of the graphical user interface	Incorrect
+MC	 Why is it necessary to run a program using test data for input?	To be sure that there are no syntax errors in the program.	Incorrect	To verify that programming language elements are used correctly.	Incorrect	To verify the application produces correct results.	Incorrect	To see if the flowchart is correct.	Incorrect
+MC	 A TextBox control ________________.	is used to describe other controls on the form	Incorrect	can be used to display graphical images	Incorrect	has the same function as a label control	Incorrect	accepts text entered by the user	Incorrect
+MC	 Which of the following is an example of a binary number?	324	Incorrect	123	Incorrect	101	Incorrect	202	Incorrect
+MC	 The part of a program that users see and work with is known as the ____________.	algorithm	Incorrect	properties	Incorrect	methods	Incorrect	user interface	Incorrect
+MC	 In Visual Basic we work with objects, which have ________________.	programmer preference	Incorrect	projects and solutions	Incorrect	classes and actions	Incorrect	properties and methods	Incorrect
+MC	 Which is considered a valid step for developing a Visual Basic application?	Determine event handlers needed for each control.	Incorrect	Determine the controls needed.	Incorrect	Create a flowchart of the code.	Incorrect	all of the above	Incorrect
+MC	 The most common form of secondary storage is ________________.	a disk drive	Incorrect	the CPU	Incorrect	RAM	Incorrect	all of the above	Incorrect
+MC	 A form is a ____________.	window in which other controls may be placed	Incorrect	box that displays text that cannot be changed by the user	Incorrect	piece of data that determines a characteristic of a control	Incorrect	control that displays a graphic image	Incorrect
+MC	 Any control ____________ should have a descriptive, programmer-defined name.	used in a form	Incorrect	whose name appears in a programming statement	Incorrect	that is a label	Incorrect	with a text property	Incorrect
+MC	 If you wish to display text which cannot be modified by the user, use the ____________.	TextBox control	Incorrect	Label control	Incorrect	Caption control	Incorrect	Name control	Incorrect
+MC	 Which of the following is an example of a control?	Form	Incorrect	TextBox	Incorrect	Button	Incorrect	all of the above	Incorrect
+MC	 A programming statement must refer to a control by its __________ property.	Text	Incorrect	Identifier	Incorrect	Name	Incorrect	Form	Incorrect
+MC	 Microsoft Visual Basic is an object-oriented programming language.	True	Incorrect	False	Incorrect
+MC	 Application software manages the computer's hardware devices.	True	Incorrect	False	Incorrect
+MC	 A control is an object that usually appears in a program's graphical user interface.	True	Incorrect	False	Incorrect
+MC	 Pseudocode is a combination of programming language and machine code.	True	Incorrect	False	Incorrect
+MC	 Properties determine the visual appearance of a control.	True	Incorrect	False	Incorrect
+MC	 Control names may begin with a letter or a number.	True	Incorrect	False	Incorrect
+MC	 Control names may not contain spaces.	True	Incorrect	False	Incorrect
+MC	 Which of the following is NOT a Visual Basic control?	Form	Incorrect	TextBox	Incorrect	Algorithm	Incorrect	Label	Incorrect
+MC	 Which of the following adheres to the naming conventions for a text box control?	lblHoursWorked	Incorrect	txthoursworked	Incorrect	LBLhoursworked	Incorrect	txtHoursWorked	Incorrect
+MC	 The purpose of a compiler is to __________________.	Aid the programmer in commenting he/her code	Incorrect	Aid the programmer in developing GUIs.	Incorrect	Convert a program from a programming language to machine code	Incorrect	Assemble and package the documentation for an application	Incorrect

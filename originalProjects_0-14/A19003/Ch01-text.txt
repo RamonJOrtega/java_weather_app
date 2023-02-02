@@ -1,0 +1,286 @@
+
+Chapter 1
+Multiple Choice
+Identify the letter of the choice that best completes the statement or answers the question.
+
+____ 1. All of the following are major hardware components of a typical computer system except ______.
+a. Main Memory 
+b. CPU
+c. Operating System
+d. secondary storage
+
+____ 2. You can think of  ____________ as the computer's work area.
+a. the CPU
+b. main memory
+c. secondary storage
+d. the desktop
+
+____ 3. Application software refers to programs that ___________.
+a. manage the computer's hardware devices
+b. controls the computers input/output
+c. performs diagnostic tests on secondary storage
+d. make the computer useful to the user
+
+____ 4. The purpose of an algorithm is to ____________.
+a. analyze the nature of a problem
+b. list a set of steps to solve a problem
+c. understand what a programming language does
+d. list the elements needed for the user interface
+
+____ 5. The CPU processes instructions written only in this language.
+a. Java 
+b. pseudo code
+c. machine language
+d. Visual Basic
+
+____ 6. ____________ were invented to make the process of encoding an algorithm in machine language easier.
+a. Programming languages 
+b. Variables
+c. Output devices
+d. Graphical user interfaces
+
+____ 7. An object in Visual Basic ____________.
+a. is also referred to as an event handler 
+b. is an attribute of a control 
+c. is an action performed by a method
+d. contains data called properties
+
+____ 8. A word that has a specific meaning in a programming language is called ______________.
+a. a keyword
+b. an operator
+c. a variable
+d. a comment
+
+____ 9. Which of the following is NOT an example of an event in Visual Basic?
+a. clicking a button
+b. dragging a control to a form from the tool box
+c. changing contents of a textbox 
+d. clicking a control
+
+____ 10. When creating a Visual Basic desktop application, the last thing you will do is ____________.
+a. correct runtime errors  
+b. create the forms
+c. write code for even procedures
+d. correct syntax errors
+
+____ 11. Programs should use comments (remarks) to __________________.
+a. help the human reader of the program
+b. make a program run more efficiently
+c. make the code run faster
+d. make the program smaller in size
+  
+____ 12. Flowcharts are used to _________________________.
+a. determine the controls required for a program
+b. describe the programs input and output
+c. graphically depict the flow of a method
+d. check for syntax errors
+
+____ 13. How would you display the Designer window if it is not visible in your project?
+a. Press Shift+F9 on the keyboard
+b. Click the Designer option on the VIEW menu
+c. Press Ctrl+Alt+D on the keyboard
+d. Click View Designer on the EDIT menu
+
+____ 14. The Auto Hide feature ____________________.
+a. enables the programmer to hide a control on a form
+b. permanently removes the toolbox from the Visual Basic environment
+c. hides the controls on a form until the programmer changes the status
+d. causes a window to display as a tab along the edge of Visual Studio
+
+____ 15. The standard toolbar ___________________________.
+a. allows the programmer to place controls on the form
+b. contains buttons that execute frequently used commands
+c. is difficult to use, since you must remember the commands
+d. allows the programmer to create user defined controls
+
+____ 16. What is the purpose of the Toolbox?
+a. To design user defined methods.
+b. To select controls and place on an application's form
+c. To select event procedures associated with a control
+d. To select methods to be placed on the form
+
+____ 17. How do you display a ToolTip?
+a. single-click a button on the toolbar
+b. double-click a button on the toolbar
+c. hold the mouse pointer over a toolbar button for a few seconds
+d. tab to the button on the toolbar so that it has the focus
+
+____ 18. A variable  _________________.
+a. performs various operations on data
+b. is a set of programming statements to perform a specific task
+c. is a storage location in memory represented by a name
+d. is a key element of the graphical user interface
+
+____ 19. Why is it necessary to run a program using test data for input?
+a. To be sure that there are no syntax errors in the program.
+b. To verify that programming language elements are used correctly.
+c. To verify the application produces correct results.
+d. To see if the flowchart is correct.
+
+____ 20. A TextBox control ________________.
+a. is used to describe other controls on the form
+b. can be used to display graphical images
+c. has the same function as a label control
+d. accepts text entered by the user
+
+____ 21. Which of the following is an example of a binary number?
+a. 324
+b. 123
+c. 101
+d. 202
+
+____ 22. The part of a program that users see and work with is known as the ____________.
+a. algorithm
+b. properties
+c. methods
+d. user interface
+
+____ 23. In Visual Basic we work with objects, which have ________________.
+a. programmer preference 
+b. projects and solutions
+c. classes and actions
+d. properties and methods
+
+____ 24. Which is considered a valid step for developing a Visual Basic application?
+a. Determine event handlers needed for each control. 
+b. Determine the controls needed. 
+c. Create a flowchart of the code.
+d. all of the above 
+
+____ 25. The most common form of secondary storage is ________________.
+a. a disk drive 
+b. the CPU 
+c. RAM
+d. all of the above
+
+____ 26. A form is a ____________.
+a. window in which other controls may be placed
+b. box that displays text that cannot be changed by the user
+c. piece of data that determines a characteristic of a control
+d. control that displays a graphic image
+ 
+____ 27. Any control ____________ should have a descriptive, programmer-defined name.
+a. used in a form 
+b. whose name appears in a programming statement 
+c. that is a label
+d. with a text property
+
+____ 28. If you wish to display text which cannot be modified by the user, use the ____________.
+a. TextBox control 
+b. Label control 
+c. Caption control
+d. Name control
+
+____ 29. Which of the following is an example of a control?
+a. Form 
+b. TextBox 
+c. Button
+d. all of the above
+ 
+____ 30. A programming statement must refer to a control by its __________ property.
+a. Text 
+b. Identifier 
+c. Name
+d. Form
+
+____ 31. Microsoft Visual Basic is an object-oriented programming language.
+a. True
+b. False
+
+____ 32. Application software manages the computer's hardware devices.
+a. True
+b. False
+
+____ 33. A control is an object that usually appears in a program's graphical user interface.
+a. True
+b. False
+
+____ 34. Pseudocode is a combination of programming language and machine code.
+a. True
+b. False
+
+
+_____35. Properties determine the visual appearance of a control.
+a. True
+b. False
+
+_____36. Control names may begin with a letter or a number.
+a. True
+b. False
+
+_____37. Control names may not contain spaces.
+a. True
+b. False
+
+_____38. Which of the following is NOT a Visual Basic control?
+a. Form
+b. TextBox
+c. Algorithm
+d. Label
+
+_____39. Which of the following adheres to the naming conventions for a text box control?
+a. lblHoursWorked
+b. txthoursworked
+c. LBLhoursworked
+d. txtHoursWorked
+
+_____40. The purpose of a compiler is to __________________.
+a. Aid the programmer in commenting he/her code
+b. Aid the programmer in developing GUIs.
+c. Convert a program from a programming language to machine code
+d. Assemble and package the documentation for an application
+
+
+
+
+Chapter 1
+Answer Section
+
+ Answer Page Reference
+ 1.   c 2
+ 2.   b 3
+ 3.   d 4
+ 4.   b 4
+ 5.   c 6
+ 6.   a 6
+ 7.   d  9
+ 8.   a 7
+ 9.   b 10
+ 10.  a 16, 20
+ 11.  a 8
+ 12.  c 19
+ 13.  b 28
+ 14.  d 29
+ 15.  b 30
+ 16.  b 31
+ 17.  c 32
+ 18.  c 7
+ 19.  c 20
+ 20.  d 12
+ 21.  c 3
+ 22.  d  8
+ 23.  d 9
+ 24.  d 16
+ 25.  a 3
+ 26.  a 12
+ 27.  b 14
+ 28.  b 12
+ 29.  d 12
+ 30.  c 14
+ 31.  a 9
+ 32.  b 4
+ 33.  a 9
+ 34.  b 19
+ 35.  a 10
+ 36.  b 15
+ 37.  a 15
+ 38.  c 12
+ 39.  d 15
+ 40.  c 6
+Starting Out with Visual Basic 2012, 6thEd by Tony Gaddis/Kip Irvine
+TEST BANK
+
+
+
+1
+Chapter 1
